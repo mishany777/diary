@@ -1,3 +1,4 @@
+import profileIcon from "../../../diary_project/src/assets/profileIcon.png";
 export default function Header() {
   return (
     <header>
@@ -10,7 +11,7 @@ export default function Header() {
             <p>Название</p>
           </li>
           <li className="userProfile">
-            <img src="./profileIcon.png" alt="Профиль"></img>
+            <img src={profileIcon} alt="Профиль"></img>
           </li>
           <li className="userName">
             <p>Имя пользователя</p>
