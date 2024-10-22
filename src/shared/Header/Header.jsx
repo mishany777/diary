@@ -1,19 +1,20 @@
-import profileIcon from "../../../diary_project/src/assets/profileIcon.png";
+import profileIcon from "../../assets/profileIcon.png";
+import styles from "../Header/Header.module.css";
 export default function Header() {
   return (
     <header>
       <nav>
-        <ul>
-          <li className="logo">
+        <ul className={styles.HeaderList}>
+          <li className={styles.logo}>
             <p>Лого</p>
           </li>
-          <li className="name">
+          <li className={styles.name}>
             <p>Название</p>
           </li>
-          <li className="userProfile">
+          <li className={styles.userProfile}>
             <img src={profileIcon} alt="Профиль"></img>
           </li>
-          <li className="userName">
+          <li className={styles.userName}>
             <p>Имя пользователя</p>
           </li>
         </ul>
