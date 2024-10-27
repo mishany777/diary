@@ -1,24 +1,32 @@
-import profileIcon from "../../assets/profileIcon.png";
-import styles from "../Header/Header.module.css";
+import miniProfileIcon from "../../assets/miniProfileIcon.png";
+import logoIcon from "../../assets/logoIcon.png";
+import styles from "./Header.module.css";
+import MainWrapper from "../MainWrapper/MainWrapper";
+
 export default function Header() {
   return (
-    <header>
-      <nav>
-        <ul className={styles.HeaderList}>
-          <li className={styles.logo}>
-            <p>Лого</p>
-          </li>
-          <li className={styles.name}>
-            <p>Название</p>
-          </li>
-          <li className={styles.userProfile}>
-            <img src={profileIcon} alt="Профиль"></img>
-          </li>
-          <li className={styles.userName}>
-            <p>Имя пользователя</p>
-          </li>
-        </ul>
-      </nav>
+    <header className={styles.header}>
+      <MainWrapper>
+        <div className={styles.navWrapper}>
+          <div className={styles.logo}>
+            <img src={logoIcon} alt="Логотип" />
+          </div>
+          <nav>
+            <ul className={styles.navList}>
+              <li className={styles.navContainer}>
+                <a href="#">Подписки</a>
+                <a href="#">Коллекции</a>
+                <a href="#">Мои книги</a>
+              </li>
+              <li className={styles.miniProfile}>
+                <a href="#">
+                  <img src={miniProfileIcon} alt="Профиль" />
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </MainWrapper>
     </header>
   );
 }
