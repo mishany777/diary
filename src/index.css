@@ -12,3 +12,12 @@ body {
   font-family: "Inter", sans-serif;
   background-color: #e8e0ff;
 }
+
+.test {
+  width: 100%;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 40px;
+}

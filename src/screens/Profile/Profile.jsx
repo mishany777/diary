@@ -1,9 +1,8 @@
-import "./App.css";
-import Header from "./shared/Header/Header.jsx";
-import MainWrapper from "../src/shared/MainWrapper/MainWrapper.jsx";
-import ProfileInfo from "./screens/Profile/components/ProfileInfo/ProfileInfo.jsx";
+import Header from "../../shared/Header/Header";
+import MainWrapper from "../../shared/MainWrapper/MainWrapper";
+import ProfileInfo from "./components/ProfileInfo/ProfileInfo";
 
-export default function App() {
+export default function Profile() {
   return (
     <>
       <Header />
