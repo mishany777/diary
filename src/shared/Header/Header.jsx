@@ -1,5 +1,5 @@
 import miniProfileIcon from "../../assets/miniProfileIcon.png";
-import logoIcon from "../../assets/logoIcon.png";
+import logoIcon from "../../assets/logoIcon.svg";
 import styles from "./Header.module.css";
 import MainWrapper from "../MainWrapper/MainWrapper";
 

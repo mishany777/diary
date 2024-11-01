@@ -1,0 +1,25 @@
+.collectionDiv {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav p {
+  font-size: 38px;
+  font-weight: 200;
+}
+
+.list {
+}
+
+.collectionBlock {
+  display: flex;
+  gap: 15px;
+}
