@@ -1,6 +1,8 @@
 import Header from "../../shared/Header/Header";
 import MainWrapper from "../../shared/MainWrapper/MainWrapper";
 import ProfileInfo from "./components/ProfileInfo/ProfileInfo";
+import ProfileSection from "./components/ProfileSection/ProfileSection";
+import Collections from "./components/Collections/Collections";
 
 export default function Profile() {
   return (
@@ -8,10 +10,12 @@ export default function Profile() {
       <Header />
       <MainWrapper>
         <div className="test">
-          <ProfileInfo></ProfileInfo>
-          <main>
-            <h1>Тут будет профиль</h1>
-          </main>
+          <ProfileSection>
+            <ProfileInfo></ProfileInfo>
+          </ProfileSection>
+          <ProfileSection>
+            <Collections></Collections>
+          </ProfileSection>
         </div>
       </MainWrapper>
     </>
