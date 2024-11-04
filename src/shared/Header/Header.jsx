@@ -16,10 +16,10 @@ export default function Header() {
               <li className={styles.navContainer}>
                 <a href="#">Подписки</a>
                 <a href="#">Коллекции</a>
-                <a href="#">Мои книги</a>
+                <a href="/mybooks">Мои книги</a>
               </li>
               <li className={styles.miniProfile}>
-                <a href="#">
+                <a href="/">
                   <img src={miniProfileIcon} alt="Профиль" />
                 </a>
               </li>

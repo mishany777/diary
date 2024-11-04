@@ -11,7 +11,7 @@ export default function Collections() {
       <div className={styles.list}>
         <ul className={styles.collectionBlock}>
           <CollectionItem title="книги" count="5"></CollectionItem>
-          <CollectionItem title="фиги" count="52"></CollectionItem>
+          <CollectionItem title="Коты" count="52"></CollectionItem>
           <CollectionItem title="вижу" count="52"></CollectionItem>
         </ul>
       </div>
