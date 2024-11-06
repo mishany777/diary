@@ -2,8 +2,10 @@ import miniProfileIcon from "../../assets/miniProfileIcon.png";
 import logoIcon from "../../assets/logoIcon.svg";
 import styles from "./Header.module.css";
 import MainWrapper from "../MainWrapper/MainWrapper";
+import axios from "axios";
 
 export default function Header() {
+  const s = 9;
   return (
     <header className={styles.header}>
       <MainWrapper>
