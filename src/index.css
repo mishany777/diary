@@ -13,6 +13,10 @@ body {
   background-color: #e8e0ff;
 }
 
+#root {
+  height: 100%;
+}
+
 .test {
   width: 100%;
   border-radius: 25px;
