@@ -6,31 +6,11 @@ import speedIcon from "../../../../assets/speedIcon.png";
 import { useState, useEffect } from "react";
 import api from '../../../../api'
 
-export default function ProfileInfo() {
+export default function ProfileInfo(props) {
+  
 
-  const [fullname, setFullname] = useState("Noname");
-  const [username, setUsername] = useState("username");
-
-  const [speed, setSpeed] = useState(0);
-  const [montly, setMonthly] = useState(0);
-  const [yearly, setYearly] = useState(0);
-  const [anytime, setAnytime] = useState(0);
-
-  useEffect(() => {
-    const username = localStorage.getItem('username');
-    api.get(`/users/user/${username}`)
-    .then(response => {
-      const data = response.data;
-      const userdata = data['user'];
-      const stat = data['statistics'];
-      setFullname(`${userdata['first_name'] + " " + userdata['last_name']}`);
-      setUsername(username);
-      setSpeed(stat['per_day']);
-      setMonthly(stat['per_month']);
-      setYearly(stat['per_year']);
-      setAnytime(stat['anytime']);
-    })
-  }, []);
+  const { username, first_name, last_name, email } = props.profileInfo;
+  const { per_day, per_month, per_year, anytime } = props.statistics;
 
   return (
     <div className={styles.profileDiv}>
@@ -41,7 +21,7 @@ export default function ProfileInfo() {
         </div>
 
         <div className={styles.statusBlock}>
-          <p>{fullname}</p>
+          <p>{first_name + " " + last_name}</p>
           <div className={styles.quoteBlock}>
             <img src={statusIcon} alt="Статус"></img>
             <p>
@@ -56,19 +36,19 @@ export default function ProfileInfo() {
           <li className={styles.statisticElem}>
             <img src={speedIcon} alt="Скорость"></img>
             <p>
-              <span>{speed}</span> страниц в день
+              <span>{per_day}</span> страниц в день
             </p>
           </li>
           <li className={styles.statisticElem}>
             <img src={speedIcon} alt="Скорость"></img>
             <p>
-              <span>{montly}</span> книг за месяц
+              <span>{per_month}</span> книг за месяц
             </p>
           </li>
           <li className={styles.statisticElem}>
             <img src={speedIcon} alt="Скорость"></img>
             <p>
-              <span>{yearly}</span> книг за год
+              <span>{per_year}</span> книг за год
             </p>
           </li>
           <li className={styles.statisticElem}>
