@@ -1,0 +1,11 @@
+.retellingForm {
+  width: 100%;
+  font-size: 25px;
+  border: none;
+  background-color: #fafafa;
+  font-family: "Inter", sans-serif;
+}
+.retellingForm:focus {
+  border: #fafafa;
+  outline: none;
+}
