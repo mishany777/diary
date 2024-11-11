@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.notes {
+  font-size: 25px;
+  padding-left: 10px;
+}
+.notes span {
+  font-weight: 200;
+}

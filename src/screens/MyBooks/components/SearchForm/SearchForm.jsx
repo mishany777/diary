@@ -18,9 +18,11 @@ export default function SearchForm() {
       </div>
 
       <div className={styles.addButtonContainer}>
-        <button className={styles.addButton}>
-          <img src={addIcon} alt="Поиск"></img>
-        </button>
+        <a href="/addbook">
+          <button className={styles.addButton}>
+            <img src={addIcon} alt="Добавить"></img>
+          </button>
+        </a>
       </div>
     </div>
   );

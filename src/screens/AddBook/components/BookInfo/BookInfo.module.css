@@ -1,0 +1,180 @@
+.mainContainer {
+  display: grid;
+  gap: 25px;
+}
+
+.title {
+  display: flex;
+  gap: 10px;
+}
+.inputAuthor {
+  width: 500px;
+  height: 60px;
+  font-size: 25px;
+  font-weight: 200;
+  border: 3px solid #baa1ff;
+  padding-left: 20px;
+  border-radius: 20px;
+}
+
+.inputAuthor:focus {
+  border: solid #baa1ff;
+  outline: none;
+}
+
+.inputName {
+  width: 700px;
+  height: 60px;
+  font-size: 25px;
+  font-weight: 200;
+  border: 3px solid #baa1ff;
+  padding-left: 20px;
+  border-radius: 20px;
+}
+
+.inputName:focus {
+  border: solid #baa1ff;
+  outline: none;
+}
+
+.statInfo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.firstBlock {
+  display: grid;
+  gap: 5px;
+}
+
+.ratingArea {
+  overflow: hidden;
+  margin-left: 20px;
+}
+
+.ratingArea:not(:checked) > input {
+  display: none;
+}
+
+.ratingArea:not(:checked) > .starLabel {
+  float: right;
+  width: 42px;
+  padding: 0;
+  cursor: pointer;
+  font-size: 46px;
+  line-height: 46px;
+  color: lightgrey;
+  text-shadow: 1px 1px #bbb;
+}
+
+.ratingArea:not(:checked) > .starLabel:before {
+  content: "★";
+}
+
+.ratingArea > input:checked ~ .starLabel {
+  color: gold;
+  text-shadow: 1px 1px #c60;
+}
+
+.ratingArea:not(:checked) > .starLabel:hover,
+.ratingArea:not(:checked) > .starLabel:hover ~ .starLabel {
+  color: gold;
+}
+
+.ratingArea > input:checked + .starLabel:hover,
+.ratingArea > input:checked + .starLabel:hover ~ .starLabel,
+.ratingArea > input:checked ~ .starLabel:hover,
+.ratingArea > input:checked ~ .starLabel:hover ~ .starLabel,
+.ratingArea > .starLabel:hover ~ input:checked ~ .starLabel {
+  color: gold;
+  text-shadow: 1px 1px goldenrod;
+}
+
+.ratingArea > .starLabel:active {
+  position: relative;
+}
+
+.inputPages {
+  font-size: 25px;
+  font-weight: 200;
+  width: 140px;
+  height: 50px;
+  border-radius: 20px;
+  border: 3px solid #baa1ff;
+  padding-left: 15px;
+  text-align: center;
+}
+
+.inputPages:focus {
+  border: solid #baa1ff;
+  outline: none;
+}
+
+.dropdownInput {
+  border: 3px solid #baa1ff;
+  font-size: 25px;
+  font-weight: 200;
+  border-radius: 20px;
+  height: 50px;
+  width: 260px;
+  padding-left: 50px;
+  background-position: right 40px center;
+  background-repeat: no-repeat;
+  background-size: 20px;
+}
+
+.open {
+  background-image: url("../../../../assets/openIcon.svg"); /* Путь к изображению открытого замка */
+}
+
+.private {
+  background-image: url("../../../../assets/lockIcon.svg"); /* Путь к изображению закрытого замка */
+}
+
+.dropdownInput:focus {
+  border: solid #baa1ff;
+  outline: none;
+}
+
+.dateInputContainer {
+  display: flex;
+}
+.dateInput {
+  font-size: 25px;
+  font-weight: 200;
+  width: 180px;
+  height: 70px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border: 3px solid #baa1ff;
+  padding-left: 20px;
+}
+
+.dateInput:focus {
+  border: solid #baa1ff;
+  outline: none;
+}
+
+.dateButton {
+  width: 70px;
+  height: 70px;
+  background-color: #baa1ff;
+  border: solid #baa1ff;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.dateButton:hover {
+  cursor: pointer;
+}
+
+.dateButton img {
+  width: 30px;
+  height: 100%;
+}
+
+.dateInput::-webkit-inner-spin-button,
+.dateInput::-webkit-calendar-picker-indicator {
+  display: none;
+}
