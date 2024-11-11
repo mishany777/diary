@@ -3,7 +3,10 @@ import "./App.css";
 import ReactDOM from "react-dom/client";
 import Profile from "./screens/Profile/Profile";
 import MyBooks from "./screens/MyBooks/MyBooks";
+import Register from "./screens/Register/Register";
+import Login from "./screens/Login/Login";
 import AddBook from "./screens/AddBook/AddBook";
+
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export default function App() {
@@ -12,6 +15,8 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Profile />} />
         <Route path="/mybooks" element={<MyBooks />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/addbook" element={<AddBook />} />
       </Routes>
     </BrowserRouter>

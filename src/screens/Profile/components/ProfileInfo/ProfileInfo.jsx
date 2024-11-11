@@ -3,17 +3,25 @@ import bigProfileIcon from "../../../../assets/bigProfileIcon.png";
 import statusIcon from "../../../../assets/statusIcon.png";
 import speedIcon from "../../../../assets/speedIcon.png";
 
-export default function ProfileInfo() {
+import { useState, useEffect } from "react";
+import api from '../../../../api'
+
+export default function ProfileInfo(props) {
+  
+
+  const { username, first_name, last_name, email } = props.profileInfo;
+  const { per_day, per_month, per_year, anytime } = props.statistics;
+
   return (
     <div className={styles.profileDiv}>
       <div className={styles.userInfo}>
         <div className={styles.profileBlock}>
           <img src={bigProfileIcon} alt="Профиль"></img>
-          <p>stoicismguy</p>
+          <p>{username}</p>
         </div>
 
         <div className={styles.statusBlock}>
-          <p>Анисимов Михаил</p>
+          <p>{first_name + " " + last_name}</p>
           <div className={styles.quoteBlock}>
             <img src={statusIcon} alt="Статус"></img>
             <p>
@@ -28,25 +36,25 @@ export default function ProfileInfo() {
           <li className={styles.statisticElem}>
             <img src={speedIcon} alt="Скорость"></img>
             <p>
-              <span>100</span> страниц в день
+              <span>{per_day}</span> страниц в день
             </p>
           </li>
           <li className={styles.statisticElem}>
             <img src={speedIcon} alt="Скорость"></img>
             <p>
-              <span>10</span> книг за месяц
+              <span>{per_month}</span> книг за месяц
             </p>
           </li>
           <li className={styles.statisticElem}>
             <img src={speedIcon} alt="Скорость"></img>
             <p>
-              <span>100</span> книг за год
+              <span>{per_year}</span> книг за год
             </p>
           </li>
           <li className={styles.statisticElem}>
             <img src={speedIcon} alt="Скорость"></img>
             <p>
-              <span>100</span> всего
+              <span>{anytime}</span> всего
             </p>
           </li>
         </ul>

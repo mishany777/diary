@@ -1,6 +1,12 @@
 import styles from "../Collections/Collections.module.css";
 import CollectionItem from "../CollectionItem/CollectionItem";
-export default function Collections() {
+
+
+
+export default function Collections(props) {
+
+  const collections = props.collections;
+
   return (
     <div className={styles.collectionDiv}>
       <div className={styles.nav}>
@@ -10,9 +16,7 @@ export default function Collections() {
 
       <div className={styles.list}>
         <ul className={styles.collectionBlock}>
-          <CollectionItem title="книги" count="5"></CollectionItem>
-          <CollectionItem title="Коты" count="52"></CollectionItem>
-          <CollectionItem title="вижу" count="52"></CollectionItem>
+          {collections.map(item => (<CollectionItem title={item.title} count={item.book_count}></CollectionItem>))}
         </ul>
       </div>
     </div>

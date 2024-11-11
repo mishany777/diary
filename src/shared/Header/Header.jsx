@@ -3,9 +3,9 @@ import logoIcon from "../../assets/logoIcon.svg";
 import styles from "./Header.module.css";
 import MainWrapper from "../MainWrapper/MainWrapper";
 import axios from "axios";
+import api from '../../api'
 
 export default function Header() {
-  const s = 9;
   return (
     <header className={styles.header}>
       <MainWrapper>
