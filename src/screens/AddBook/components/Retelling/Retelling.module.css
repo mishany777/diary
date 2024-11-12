@@ -4,6 +4,7 @@
   border: none;
   background-color: #fafafa;
   font-family: "Inter", sans-serif;
+  resize: vertical;
 }
 .retellingForm:focus {
   border: #fafafa;
