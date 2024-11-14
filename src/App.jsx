@@ -6,6 +6,7 @@ import MyBooks from "./screens/MyBooks/MyBooks";
 import Register from "./screens/Register/Register";
 import Login from "./screens/Login/Login";
 import AddBook from "./screens/AddBook/AddBook";
+import Collection from "./screens/Collection/Collection";
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/addbook" element={<AddBook />} />
+        <Route path="/collection" element={<Collection />} />
       </Routes>
     </BrowserRouter>
   );
