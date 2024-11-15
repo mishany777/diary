@@ -5,8 +5,8 @@ import MainWrapper from "../MainWrapper/MainWrapper";
 import axios from "axios";
 
 import { Link } from "react-router-dom";
+import api from "../../api";
 
-import api from '../../api'
 
 export default function Header() {
   return (
@@ -20,7 +20,7 @@ export default function Header() {
             <ul className={styles.navList}>
               <li className={styles.navContainer}>
                 <a href="#">Подписки</a>
-                <a href="#">Коллекции</a>
+                <a href="/collection">Коллекции</a>
                 <a href="/mybooks">Мои книги</a>
               </li>
               <li className={styles.miniProfile}>
