@@ -7,27 +7,22 @@ import Register from "./screens/Register/Register";
 import Login from "./screens/Login/Login";
 import AddBook from "./screens/AddBook/AddBook";
 
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import RequireAuth from "./components/RequireAuth";
 
 export default function App() {
-
-  const LoginCheckRouter = ({...props}) => {
-    console.log(localStorage.getItem('token'));
-    return localStorage.getItem('token') ? <Profile /> : <Navigate to="/login"/>
-  }
-
-  const LoginChechRouter = (props) => {
-    return localStorage.getItem('token') ? props.element : <Navigate to="/login"/>
-  } 
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginCheckRouter />} />
-        <Route path="/mybooks" element={<LoginChechRouter element={ <MyBooks/> }/>} />
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/mybooks" element={<MyBooks/>} />
+        <Route path="/addbook" element={<AddBook/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/addbook" element={<AddBook />} />
       </Routes>
     </BrowserRouter>
   );

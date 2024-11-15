@@ -1,7 +1,7 @@
 import styles from '../Login/Login.module.css'
 import api from '../../api'
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom';
 
 export default function Login() {
     
@@ -18,7 +18,7 @@ export default function Login() {
 
     const {username, password, first_name, last_name, email} = loginData;
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
         console.log('submit');
         api.post('/users/login/', loginData)
@@ -27,7 +27,8 @@ export default function Login() {
             console.log(data);
             const key = data['key'];
             localStorage.setItem('token', key);
-            navigate("/");
+            console.log(localStorage.getItem('token'));
+            navigate("/profile");
         })
         .catch(error => {
             alert(error);

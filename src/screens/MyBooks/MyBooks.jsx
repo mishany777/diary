@@ -10,6 +10,8 @@ import api from '../../api'
 
 export default function MyBooks() {
 
+  localStorage.removeItem("token");
+
   const [profileInfo, setProfileInfo] = useState({
     "username": "",
     "fist_name": "",

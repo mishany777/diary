@@ -3,6 +3,9 @@ import logoIcon from "../../assets/logoIcon.svg";
 import styles from "./Header.module.css";
 import MainWrapper from "../MainWrapper/MainWrapper";
 import axios from "axios";
+
+import { Link } from "react-router-dom";
+
 import api from '../../api'
 
 export default function Header() {
@@ -21,9 +24,9 @@ export default function Header() {
                 <a href="/mybooks">Мои книги</a>
               </li>
               <li className={styles.miniProfile}>
-                <a href="/">
+                <Link to='/profile'>
                   <img src={miniProfileIcon} alt="Профиль" />
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
