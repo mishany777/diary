@@ -27,6 +27,7 @@
   padding-left: 10px;
   padding-top: 10px;
   padding-bottom: 5px;
+  resize: vertical;
 }
 
 .input:focus {

@@ -54,7 +54,7 @@ export default function ProfileInfo(props) {
           <li className={styles.statisticElem}>
             <img src={speedIcon} alt="Скорость"></img>
             <p>
-              <span>{anytime}</span> всего
+              <span>{anytime}</span> книг за все время
             </p>
           </li>
         </ul>

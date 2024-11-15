@@ -27,7 +27,7 @@ export default function Profile() {
   const [collections, setCollections] = useState([]);
 
   const getProfileInfo = async () => { 
-    api.get('/users/user')
+    await api.get('/users/user')
     .then(response => {
       setProfileInfo(response.data);
     })
@@ -44,10 +44,13 @@ export default function Profile() {
   }
 
   const getCollections = async () => {
-    await api.get(`/collections/user/${profileInfo['username']}`)
-    .then(response => {
-      setCollections(response.data);
-    })
+    const username = profileInfo['username'];
+    if (username){
+      await api.get(`/collections/user/${profileInfo['username']}`)
+      .then(response => {
+        setCollections(response.data);
+      });
+    }
   }
 
   useEffect(() => {
