@@ -1,37 +1,43 @@
-import styles from "../Collection/Collection.module.css";
 import Header from "../../shared/Header/Header";
 import MainWrapper from "../../shared/MainWrapper/MainWrapper";
 import React, { useState, useEffect } from "react";
 import CollectionItem from "./components/CollectionItem/CollectionItem";
+
+import styles from '../Collection/Collection.module.css';
+
 import api from '../../api'
+import { useAuth } from "../../AuthContext";
 
 export default function Collection() {
+
+  const { user } = useAuth();
   const [collections, setCollections] = useState([]);
+  const [profileInfo, setProfileInfo] = useState(user);
 
-  const [profileInfo, setProfileInfo] = useState({
-    "username": "",
-    "fist_name": "",
-    "last_name": "",
-    "email": ""
-  });
-
-  const getProfileInfo = async () => { 
-    await api.get('/users/user')
-    .then(response => {
-      setProfileInfo(response.data);
-    })
-  }
-  
   useEffect(() => {
-    api.get('/')
-  }, []);
-  
+    setProfileInfo(user);
+  }, [user]);
 
+  const getCollections = async () => {
+    const username = profileInfo.username;
+    if (username) {
+      await api.get(`/collections/user/${username}`)
+      .then(res => {
+        const data = res.data;
+        setCollections(data);
+      })
+    }
+  }
+
+  useEffect(() => {
+    getCollections();
+  }, [profileInfo])
+  
   return (
     <>
       <Header></Header>
       <MainWrapper>
-        <div className={styles.backgroung}>
+      <div className={styles.backgroung}>
           <p className={styles.name}>Коллекции</p>
           <div className={styles.collectionBlock}>
             <div className={styles.collectionButtonBlock}>
@@ -41,7 +47,7 @@ export default function Collection() {
               </button>
             </div>
             {collections.map((collection) => (
-              <CollectionItem></CollectionItem>
+              <CollectionItem collection={collection}></CollectionItem>
             ))}
           </div>
         </div>

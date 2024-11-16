@@ -36,10 +36,11 @@
     font-family: "Inter", sans-serif;
     color: black;
     background-color: #d9d9d9;
-    height: 35px;
+    height: 30px;
     border-radius: 10px;
     width: 120px;
-    padding-left: 10px;
+    padding: 0 10px;
+    border: none;
 }
 
 .countBlock {
@@ -57,6 +58,7 @@
 .delete {
     border: none;
     background-color: #fafafa;
+    cursor: pointer;
 }
 
 .delete p {
@@ -64,8 +66,4 @@
     font-weight: 200;
     font-family: "Inter", sans-serif;
     padding: 5px;
-}
-
-.delete:hover {
-    cursor: pointer;
 }
