@@ -12,14 +12,9 @@ export default function Collection() {
 
   const { user } = useAuth();
   const [collections, setCollections] = useState([]);
-  const [profileInfo, setProfileInfo] = useState(user);
-
-  useEffect(() => {
-    setProfileInfo(user);
-  }, [user]);
 
   const getCollections = async () => {
-    const username = profileInfo.username;
+    const username = user.username;
     if (username) {
       await api.get(`/collections/user/${username}`)
       .then(res => {
@@ -27,11 +22,11 @@ export default function Collection() {
         setCollections(data);
       })
     }
-  }
+  };
 
   useEffect(() => {
     getCollections();
-  }, [profileInfo])
+  }, [user])
   
   return (
     <>

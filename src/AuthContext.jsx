@@ -4,13 +4,23 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
 
-    const [user, setUser] = useState(null);
-    const [key, setKey] = useState(null);
+    const [user, setUser] = useState({});
+    const [key, setKey] = useState();
 
     const login = (key) => {
         setKey(key);
         localStorage.setItem('key', key);
     };
+
+    const getUser = async () => {
+        await api.get('/users/user')
+        .then(res => {
+            const data = res.data;
+            localStorage.setItem('user', JSON.stringify(data));
+            setUser(data);
+        })
+        .catch(err => { alert(err) });
+    }
 
     useEffect(() => {
         const auth_key = localStorage.getItem('key');
@@ -22,13 +32,7 @@ export const AuthProvider = ({children}) => {
             setUser(JSON.parse(user));
         }
         else {
-            api.get('/users/user')
-            .then(res => {
-                const data = res.data;
-                localStorage.setItem('user', JSON.stringify(data));
-                setUser(data);
-            })
-            .catch(err => { alert(err) });
+            getUser();
         }
     }, []);
 

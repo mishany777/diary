@@ -2,6 +2,11 @@ import styles from '../CollectionItem/CollectionItem.module.css'
 
 export default function CollectionItem(props) {
     const item = props.collection;
+
+    const changeState = async (state) => {
+        console.log(`new state ${state}`);
+    }
+
     return (
         <div className={styles.collectionItem}>
             <div className={styles.collectionInfo}>
@@ -12,7 +17,9 @@ export default function CollectionItem(props) {
             </div>
             <select
                 className={styles.status}
-                defaultValue={item.private}>
+                defaultValue={item.private}
+                onChange={(e) => changeState(e.target.value)}
+                >
                 <option value={false}>Публичная</option>
                 <option value={true}>Приватная</option>
                 </select>

@@ -12,19 +12,11 @@ import { useState, useEffect } from "react";
 export default function Profile() {
 
   const { user } = useAuth();
-  const [profileInfo, setProfileInfo] = useState(user);
-
-  const [statistics, setStatistics] = useState({
-    "per_day": 0,
-    "per_month": 0,
-    "per_year": 0,
-    "anytime": 0
-  });
-
+  const [statistics, setStatistics] = useState({});
   const [collections, setCollections] = useState([]);
 
   const getStat = async () => {
-    const username = profileInfo.username;
+    const username = user.username;
     if (username){
       await api.get(`/users/user/${username}`)
       .then(response => {
@@ -34,7 +26,7 @@ export default function Profile() {
   }
 
   const getCollections = async () => {
-    const username = profileInfo.username;
+    const username = user.username;
     if (username){
       await api.get(`/collections/user/${username}`)
       .then(response => {
@@ -42,15 +34,39 @@ export default function Profile() {
       });
     }
   }
+  // const getStat = async () => {
+  //   const username = profileInfo.username;
+  //   if (username){
+  //     await api.get(`/users/user/${username}`)
+  //     .then(response => {
+  //       setStatistics(response.data['statistics']);
+  //     })
+  //   }
+  // }
 
-  useEffect(() => {
-    setProfileInfo(user);
-  }, [user]);
+  // const getCollections = async () => {
+  //   const username = profileInfo.username;
+  //   if (username){
+  //     await api.get(`/collections/user/${username}`)
+  //     .then(response => {
+  //       setCollections(response.data);
+  //     });
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   setProfileInfo(user);
+  // }, [user]);
+
+  // useEffect(() => {
+  //   getStat();
+  //   getCollections();
+  // }, [profileInfo]);
 
   useEffect(() => {
     getStat();
     getCollections();
-  }, [profileInfo]);
+  }, [user]);
 
   return (
     <>
@@ -58,10 +74,10 @@ export default function Profile() {
       <MainWrapper>
         <div className="test">
           <ProfileSection>
-            {profileInfo ? <ProfileInfo profileInfo={profileInfo} statistics={statistics}></ProfileInfo> : <p>loading</p>}
+            {user ? <ProfileInfo profileInfo={user} statistics={statistics}></ProfileInfo> : <p>loading</p>}
           </ProfileSection>
           <ProfileSection>
-            <Collections collections={collections}></Collections>
+            {user ? <Collections collections={collections}></Collections> : <p>loading</p>}
           </ProfileSection>
         </div>
       </MainWrapper>

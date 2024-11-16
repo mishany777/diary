@@ -12,15 +12,10 @@ import api from '../../api'
 export default function MyBooks() {
 
   const { user } = useAuth();
-  const [profileInfo, setProfileInfo] = useState(user);
   const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    setProfileInfo(user);
-  }, [user])
-
   const getBooks = async () => {
-    const username = profileInfo.username;
+    const username = user.username;
     if (username) {
       api.get(`/books/user/${username}`)
       .then(response => {
@@ -34,7 +29,7 @@ export default function MyBooks() {
 
   useEffect(() => {
     getBooks();
-  }, [profileInfo])
+  }, [user])
 
   return (
     <>
@@ -43,7 +38,7 @@ export default function MyBooks() {
         <div className="test">
           <SearchForm></SearchForm>
           <ProfileSection>
-            <BooksList books={books}></BooksList>
+            {user ? <BooksList books={books}></BooksList> : <p>loading</p>}
           </ProfileSection>
         </div>
       </MainWrapper>
