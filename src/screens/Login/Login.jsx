@@ -2,10 +2,13 @@ import styles from '../Login/Login.module.css'
 import api from '../../api'
 import { useState } from "react";
 import { redirect, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../AuthContext';
 
 export default function Login() {
     
     const navigate = useNavigate();
+
+    const { login } = useAuth();
 
     const [loginData, setLoginData] = useState({
         "username": "",
@@ -16,7 +19,7 @@ export default function Login() {
         setLoginData({...loginData, [e.target.name]: e.target.value})
     }
 
-    const {username, password, first_name, last_name, email} = loginData;
+    const {username, password } = loginData;
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -24,10 +27,7 @@ export default function Login() {
         api.post('/users/login/', loginData)
         .then(response => {
             const data = response.data;
-            console.log(data);
-            const key = data['key'];
-            localStorage.setItem('token', key);
-            console.log(localStorage.getItem('token'));
+            login(data.key);
             navigate("/profile");
         })
         .catch(error => {

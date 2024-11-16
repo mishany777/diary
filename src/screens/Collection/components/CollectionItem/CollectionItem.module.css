@@ -1,0 +1,71 @@
+.collectionItem {
+    display: flex;
+    width: 95%;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #baa1ff;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 60px;
+    margin-left: 35px;
+}
+  
+.collectionInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.collectionName {
+    font-size: 20px;
+    font-weight: 200;
+    font-family: "Inter", sans-serif;
+    padding-left: 10px;
+    height: 35px;
+}
+
+.inputBlock {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.status {
+    font-size: 16px;
+    font-weight: 200;
+    font-family: "Inter", sans-serif;
+    color: black;
+    background-color: #d9d9d9;
+    height: 35px;
+    border-radius: 10px;
+    width: 120px;
+    padding-left: 10px;
+}
+
+.countBlock {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.collectionCount {
+    font-size: 20px;
+    font-weight: 200;
+    font-family: "Inter", sans-serif;
+}
+
+.delete {
+    border: none;
+    background-color: #fafafa;
+}
+
+.delete p {
+    font-size: 20px;
+    font-weight: 200;
+    font-family: "Inter", sans-serif;
+    padding: 5px;
+}
+
+.delete:hover {
+    cursor: pointer;
+}

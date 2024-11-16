@@ -1,9 +1,10 @@
 import axios from "axios"
+import { useAuth } from "./AuthContext";
 
 function getHeaders() {
   const headers = {
     'Content-Type': 'application/json',
-    'Authorization': `Token ${localStorage.getItem('token')}`
+    'Authorization': `Token ${localStorage.getItem('key')}`
   }
   return headers;
 }

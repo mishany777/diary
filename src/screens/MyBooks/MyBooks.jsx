@@ -5,31 +5,36 @@ import ProfileSection from "../Profile/components/ProfileSection/ProfileSection"
 import BooksList from "./components/BooksList/BooksList";
 
 import { useEffect, useState } from "react";
+import { useAuth } from "../../AuthContext";
 
 import api from '../../api'
 
 export default function MyBooks() {
 
-  localStorage.removeItem("token");
+  const { user } = useAuth();
+  const [profileInfo, setProfileInfo] = useState(user);
+  const [books, setBooks] = useState([]);
 
-  const [profileInfo, setProfileInfo] = useState({
-    "username": "",
-    "fist_name": "",
-    "last_name": "",
-    "email": ""
-  });
+  useEffect(() => {
+    setProfileInfo(user);
+  }, [user])
 
-  const getProfileInfo = async () => { 
-    await api.get('/users/user')
-    .then(response => {
-      setProfileInfo(response.data);
-    })
+  const getBooks = async () => {
+    const username = profileInfo.username;
+    if (username) {
+      api.get(`/books/user/${username}`)
+      .then(response => {
+        setBooks(response.data);
+      })
+      .catch(error => {
+        alert(error);
+      });
+    }
   }
 
   useEffect(() => {
-    getProfileInfo();
-  }, [])
-  console.log(profileInfo);
+    getBooks();
+  }, [profileInfo])
 
   return (
     <>
@@ -38,7 +43,7 @@ export default function MyBooks() {
         <div className="test">
           <SearchForm></SearchForm>
           <ProfileSection>
-            <BooksList profileInfo={profileInfo}></BooksList>
+            <BooksList books={books}></BooksList>
           </ProfileSection>
         </div>
       </MainWrapper>

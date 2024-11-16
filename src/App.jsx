@@ -12,24 +12,29 @@ import { BrowserRouter, Routes, Route, Navigate, redirect } from "react-router-d
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { AuthProvider } from "./AuthContext";
+
 import RequireAuth from "./components/RequireAuth";
 
 export default function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/profile" element={<Profile/>} />
-        <Route path="/mybooks" element={<MyBooks/>} />
-        <Route path="/addbook" element={<AddBook/>} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/addbook" element={<AddBook />} />
-        <Route path="/collection" element={<Collection />} />
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/profile" element={<Profile/>} />
+          <Route path="/mybooks" element={<MyBooks/>} />
+          <Route path="/addbook" element={<AddBook/>} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/collection" element={<Collection />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(
+    <App />
+);

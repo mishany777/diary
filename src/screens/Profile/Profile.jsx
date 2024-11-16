@@ -5,17 +5,14 @@ import ProfileSection from "./components/ProfileSection/ProfileSection";
 import Collections from "./components/Collections/Collections";
 
 import api from '../../api'
+import { useAuth } from "../../AuthContext";
 
 import { useState, useEffect } from "react";
 
 export default function Profile() {
 
-  const [profileInfo, setProfileInfo] = useState({
-    "username": "",
-    "fist_name": "",
-    "last_name": "",
-    "email": ""
-  });
+  const { user } = useAuth();
+  const [profileInfo, setProfileInfo] = useState(user);
 
   const [statistics, setStatistics] = useState({
     "per_day": 0,
@@ -26,15 +23,8 @@ export default function Profile() {
 
   const [collections, setCollections] = useState([]);
 
-  const getProfileInfo = async () => { 
-    await api.get('/users/user')
-    .then(response => {
-      setProfileInfo(response.data);
-    })
-  }
-
   const getStat = async () => {
-    const username = profileInfo['username'];
+    const username = profileInfo.username;
     if (username){
       await api.get(`/users/user/${username}`)
       .then(response => {
@@ -44,9 +34,9 @@ export default function Profile() {
   }
 
   const getCollections = async () => {
-    const username = profileInfo['username'];
+    const username = profileInfo.username;
     if (username){
-      await api.get(`/collections/user/${profileInfo['username']}`)
+      await api.get(`/collections/user/${username}`)
       .then(response => {
         setCollections(response.data);
       });
@@ -54,8 +44,8 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    getProfileInfo();
-  }, []);
+    setProfileInfo(user);
+  }, [user]);
 
   useEffect(() => {
     getStat();
@@ -68,7 +58,7 @@ export default function Profile() {
       <MainWrapper>
         <div className="test">
           <ProfileSection>
-            <ProfileInfo profileInfo={profileInfo} statistics={statistics}></ProfileInfo>
+            {profileInfo ? <ProfileInfo profileInfo={profileInfo} statistics={statistics}></ProfileInfo> : <p>loading</p>}
           </ProfileSection>
           <ProfileSection>
             <Collections collections={collections}></Collections>
