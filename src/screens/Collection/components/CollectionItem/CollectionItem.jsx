@@ -1,10 +1,18 @@
 import styles from '../CollectionItem/CollectionItem.module.css'
+import api from '../../../../api';
 
 export default function CollectionItem(props) {
     const item = props.collection;
 
     const changeState = async (state) => {
         console.log(`new state ${state}`);
+    }
+
+    const deleteCollection = async () => {
+        await api.delete(`/collections/${item.uuid}/delete`)
+        .then(res => {
+            props.rerender();
+        })
     }
 
     return (
@@ -27,7 +35,8 @@ export default function CollectionItem(props) {
             </div>
             <div>
                 <button
-                className={styles.delete}>
+                className={styles.delete}
+                onClick={() => { deleteCollection() }}>
                 <p>Удалить</p>
                 </button>
             </div>

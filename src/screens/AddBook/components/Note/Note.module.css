@@ -1,13 +1,16 @@
+:root {
+  --mix-height: 100px;
+}
+
 .container {
   display: flex;
   align-items: center;
   background-color: #fafafa;
   border-radius: 10px;
   box-shadow: 8px 8px 8.8px 0px #00000040;
-  min-height: 100px;
   width: 100%;
-
   padding-right: 10px;
+
 }
 
 .sidebar {
@@ -20,13 +23,13 @@
 
 .input {
   width: 100%;
-  font-size: 25px;
+  font-size: 22px;
   border: none;
   background-color: #fafafa;
   font-family: "Inter", sans-serif;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 5px;
+  padding: 10px;
+  min-height: var(--mix-height);
+  height: var(--mix-height);
   resize: vertical;
 }
 

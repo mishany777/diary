@@ -1,46 +1,46 @@
+:root {
+  --border-size: 2px;
+}
+
 .mainContainer {
   display: grid;
-  gap: 25px;
+  gap: 15px;
+}
+
+.privacy {
+  border: none;
+  font-size: 20px;
+  padding: 7px 15px;
+  border-radius: 10px;
 }
 
 .title {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
   gap: 10px;
-}
-.inputAuthor {
-  width: 500px;
   height: 60px;
-  font-size: 25px;
+}
+
+.inputField {
+  height: 100%;
+  font-size: 22px;
   font-weight: 200;
-  border: 3px solid #baa1ff;
-  padding-left: 20px;
+  border: var(--border-size) solid #baa1ff;
+  padding-left: 15px;
   border-radius: 20px;
 }
 
-.inputAuthor:focus {
-  border: solid #baa1ff;
+.inputField:focus {
   outline: none;
-}
-
-.inputName {
-  width: 700px;
-  height: 60px;
-  font-size: 25px;
-  font-weight: 200;
-  border: 3px solid #baa1ff;
-  padding-left: 20px;
-  border-radius: 20px;
-}
-
-.inputName:focus {
-  border: solid #baa1ff;
-  outline: none;
+  border-color: #845bf5;
 }
 
 .statInfo {
   display: flex;
   gap: 20px;
   align-items: center;
+  justify-content: space-between;
+  height: 60px;
 }
 
 .firstBlock {
@@ -96,18 +96,19 @@
 }
 
 .inputPages {
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 200;
-  width: 140px;
-  height: 50px;
+  width: 200px;
+  height: 100%;
   border-radius: 20px;
-  border: 3px solid #baa1ff;
+  border: var(--border-size) solid #baa1ff;
   padding-left: 15px;
   text-align: center;
+  -moz-appearance: textfield;
+  /* -webkit-appearance: none; */
 }
 
 .inputPages:focus {
-  border: solid #baa1ff;
   outline: none;
 }
 
@@ -133,34 +134,34 @@
 }
 
 .dropdownInput:focus {
-  border: solid #baa1ff;
   outline: none;
 }
 
 .dateInputContainer {
   display: flex;
+  height: 100%;
 }
+
 .dateInput {
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 200;
-  width: 180px;
-  height: 70px;
+  /* width: 180px; */
+  height: 100%;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 20px;
-  border: 3px solid #baa1ff;
+  border: var(--border-size) solid #baa1ff;
   padding-left: 20px;
 }
 
 .dateInput:focus {
-  border: solid #baa1ff;
   outline: none;
 }
 
 .dateButton {
   width: 70px;
-  height: 70px;
+  height: 100%;
   background-color: #baa1ff;
-  border: solid #baa1ff;
+  border: var(--border-size) solid #baa1ff;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
 }
@@ -177,4 +178,23 @@
 .dateInput::-webkit-inner-spin-button,
 .dateInput::-webkit-calendar-picker-indicator {
   display: none;
+}
+
+.times {
+  display: flex;
+  gap: 10px;
+  height: 100%;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  /* gap: 3px; */
+  height: 100%;
+}
+
+.fname {
+  font-size: 14px;
+  margin-left: 14px;
+  font-weight: 250;
 }

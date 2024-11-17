@@ -2,6 +2,7 @@ import Header from "../../shared/Header/Header";
 import MainWrapper from "../../shared/MainWrapper/MainWrapper";
 import React, { useState, useEffect } from "react";
 import CollectionItem from "./components/CollectionItem/CollectionItem";
+import CreateCollectionItem from "./components/CreateCollectionItem/CreateCollectionItem";
 
 import styles from '../Collection/Collection.module.css';
 
@@ -12,7 +13,9 @@ export default function Collection() {
 
   const { user } = useAuth();
   const [collections, setCollections] = useState([]);
-
+  const [editMode, setEditMode] = useState(false);
+  
+  
   const getCollections = async () => {
     const username = user.username;
     if (username) {
@@ -24,9 +27,17 @@ export default function Collection() {
     }
   };
 
+  const toggleEdit = () => {
+    setEditMode(!editMode);
+  }
+
   useEffect(() => {
     getCollections();
   }, [user])
+
+  useEffect(() => {
+    document.title = "Колллекции";
+  }, [])
   
   return (
     <>
@@ -35,15 +46,17 @@ export default function Collection() {
       <div className={styles.backgroung}>
           <p className={styles.name}>Коллекции</p>
           <div className={styles.collectionBlock}>
-            <div className={styles.collectionButtonBlock}>
-              <button
-                className={styles.collectionButton}>
-                <p>+ Создать новую коллекцию</p>
-              </button>
-            </div>
-            {collections.map((collection) => (
-              <CollectionItem collection={collection}></CollectionItem>
-            ))}
+          <div className={styles.collectionButtonBlock}>
+            <button
+              className={styles.collectionButton}
+              onClick={() => {toggleEdit()}}>
+              <p>{editMode ? "-" : "+"} Создать новую коллекцию</p>
+            </button>
+          </div>
+          {editMode && <CreateCollectionItem toggle={toggleEdit} rerender={getCollections}></CreateCollectionItem>}
+          {collections.map((collection) => (
+            <CollectionItem collection={collection} rerender={getCollections}></CollectionItem>
+          ))}
           </div>
         </div>
       </MainWrapper>

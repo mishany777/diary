@@ -26,14 +26,15 @@ export const AuthProvider = ({children}) => {
         const auth_key = localStorage.getItem('key');
         if (auth_key) {
             setKey(auth_key);    
+            const user = localStorage.getItem('user');
+            if (user) {
+                setUser(JSON.parse(user));
+            }
+            else {
+                getUser();
+            }
         }
-        const user = localStorage.getItem('user');
-        if (user) {
-            setUser(JSON.parse(user));
-        }
-        else {
-            getUser();
-        }
+        
     }, []);
 
     return (<AuthContext.Provider value={{ user, login, key }}>
