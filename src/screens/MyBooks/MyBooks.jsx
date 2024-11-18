@@ -7,6 +7,7 @@ import BooksList from "./components/BooksList/BooksList";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../AuthContext";
+import { useSearchParams } from "react-router-dom";
 
 import api from '../../api'
 
@@ -14,11 +15,13 @@ export default function MyBooks() {
 
   const { user } = useAuth();
   const [books, setBooks] = useState([]);
+  const [searchParams] = useSearchParams();
+  const searchValue = searchParams.get("search");
 
   const getBooks = async () => {
     const username = user.username;
     if (username) {
-      api.get(`/books/user/${username}`)
+      api.get(`/books/user/${username}${searchValue ? `?search=${searchValue}` : ""}`)
       .then(response => {
         setBooks(response.data);
       })
@@ -37,7 +40,7 @@ export default function MyBooks() {
       <Header></Header>
       <MainWrapper>
         <div className="test">
-          <SearchForm></SearchForm>
+          <SearchForm searchValue={searchValue}></SearchForm>
           <ProfileSection>
             {user ? <BooksList books={books}></BooksList> : <p>loading</p>}
           </ProfileSection>

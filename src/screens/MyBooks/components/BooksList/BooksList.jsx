@@ -11,7 +11,7 @@ export default function BooksList(props) {
     <div className={styles.list}>
       <ul className={styles.booksBlock}>
       {props.books.map(book => (
-        <BookItem tag={["Отлично", "Классика"]} title={book.title} author={book.author}></BookItem>
+        <BookItem tags={book.collections} title={book.title} author={book.author} uuid={book.book_id}></BookItem>
         ))}
       </ul>
     </div>

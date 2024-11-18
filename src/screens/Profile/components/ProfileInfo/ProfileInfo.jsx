@@ -23,7 +23,7 @@ export default function ProfileInfo(props) {
         <div className={styles.statusBlock}>
           <p>{first_name + " " + last_name}</p>
           <div className={styles.quoteBlock}>
-            <img src={statusIcon} alt="Статус"></img>
+            {/* <img src={statusIcon} alt="Статус"></img> */}
             <p>
               Сошел с ума после прочтения Война и Мир,пока читал его в школе
             </p>

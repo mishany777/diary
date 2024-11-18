@@ -1,6 +1,6 @@
 .item {
   display: grid;
-  grid-template-rows: 3fr 2fr;
+  grid-template-rows: 5fr 2fr;
   border-radius: 20px;
   border: 2px solid black;
   width: 230px;
@@ -15,7 +15,7 @@
 
 .name {
   padding: 10px 10px;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .title {
@@ -40,7 +40,12 @@
   border: 2px solid #029cc7;
   border-radius: 20px;
   box-shadow: 0px 4px 4px 0px #00000040;
-
+  text-wrap: nowrap;
   padding: 2px 4px;
   margin-bottom: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }

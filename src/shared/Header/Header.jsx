@@ -14,13 +14,15 @@ export default function Header() {
       <MainWrapper>
         <div className={styles.navWrapper}>
           <div className={styles.logo}>
-            <img src={logoIcon} alt="Логотип" />
+            <a href="/">
+              <img src={logoIcon} alt="Логотип" />
+            </a>
           </div>
           <nav>
             <ul className={styles.navList}>
               <li className={styles.navContainer}>
-                <a href="#">Подписки</a>
-                <a href="/collection">Коллекции</a>
+                <a href="/">Подписки</a>
+                <a href="/collections">Коллекции</a>
                 <a href="/mybooks">Мои книги</a>
               </li>
               <li className={styles.miniProfile}>

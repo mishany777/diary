@@ -19,10 +19,6 @@ export default function AddBlock(props) {
           })
       }
       <AddNote onClick={props.addNote} />
-      <button onClick={() => {
-        console.log(props.notes);
-        console.log(props.bookInfo);
-      }}>adsasd</button>
     </div>
   );
 }
