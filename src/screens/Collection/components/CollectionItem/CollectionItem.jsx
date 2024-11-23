@@ -32,6 +32,21 @@ export default function CollectionItem(props) {
         })
     }
 
+    const getBookTitle = (n) => {
+        n %= 100;
+        if (n >= 5 && n <= 20) {
+            return 'книг';
+        }
+        n %= 10;
+        if (n === 1) {
+            return 'книга';
+        }
+        if (n >= 2 && n <= 4) {
+            return 'книги';
+        }
+        return 'книг';
+    }
+
     return (
         <div className={styles.collectionItem}>
             <div className={styles.collectionInfo}>
@@ -40,7 +55,7 @@ export default function CollectionItem(props) {
                 </Link>
             <div className={styles.inputBlock}>
                 <div className={styles.countBlock}>
-                <p className={styles.collectionCount}>{item.book_count} книг |</p>
+                <p className={styles.collectionCount}>{item.book_count} {getBookTitle(item.book_count)} |</p>
             </div>
             <select
                 className={styles.status}

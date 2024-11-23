@@ -1,6 +1,6 @@
 .item {
     display: grid;
-    grid-template-rows: 3fr 2fr;
+    grid-template-rows: 5fr 2fr;
     border-radius: 20px;
     border: 2px solid black;
     width: 230px;

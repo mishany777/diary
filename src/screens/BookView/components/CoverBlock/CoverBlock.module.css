@@ -29,5 +29,39 @@
     border: solid #a482ff;
     cursor: pointer;
 }
+
+.buttons { 
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 10px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.button {
+    /* height: 30px; */
+    border: none;
+    border-radius: 20px;
+    font-weight: 200;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px 10px;
+}
+
+.delete {
+    background-color: #e62942;
+}
+
+.delete:hover {
+    background-color: #c8132b;
+}
+
+.edit {
+    background-color: #baa1ff ;
+}
+.edit:hover {
+    background-color: #a482ff ;
+}
+
   
 

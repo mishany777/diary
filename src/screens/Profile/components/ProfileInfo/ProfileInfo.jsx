@@ -2,6 +2,9 @@ import styles from "../ProfileInfo/ProfileInfo.module.css";
 import bigProfileIcon from "../../../../assets/bigProfileIcon.png";
 import statusIcon from "../../../../assets/statusIcon.png";
 import speedIcon from "../../../../assets/speedIcon.png";
+import monthIcon from '../../../../assets/month_calendar.svg';
+import alltime from '../../../../assets/time-past.svg';
+import ball from '../../../../assets/cristmas.svg';
 
 import { useState, useEffect } from "react";
 import api from '../../../../api'
@@ -34,25 +37,25 @@ export default function ProfileInfo(props) {
       <div className={styles.statisticBlock}>
         <ul className={styles.statisticList}>
           <li className={styles.statisticElem}>
-            <img src={speedIcon} alt="Скорость"></img>
+            <img src={speedIcon} width={60} alt="Скорость"></img>
             <p>
               <span>{per_day}</span> страниц в день
             </p>
           </li>
           <li className={styles.statisticElem}>
-            <img src={speedIcon} alt="Скорость"></img>
+            <img src={monthIcon} width={60} alt="Скорость"></img>
             <p>
               <span>{per_month}</span> книг за месяц
             </p>
           </li>
           <li className={styles.statisticElem}>
-            <img src={speedIcon} alt="Скорость"></img>
+            <img src={ball} width={60} alt="Скорость"></img>
             <p>
               <span>{per_year}</span> книг за год
             </p>
           </li>
           <li className={styles.statisticElem}>
-            <img src={speedIcon} alt="Скорость"></img>
+            <img src={alltime} width={60} alt="Скорость"></img>
             <p>
               <span>{anytime}</span> книг за все время
             </p>

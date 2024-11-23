@@ -48,7 +48,7 @@ export default function CollectionView() {
             <MainWrapper>
                 <CollectionSection>
                     <div className={styles.infoDiv}>
-                        <h1 className={styles.title}>Книги коллекции "<b>{collection.title}</b>"</h1>
+                        <h1 className={styles.title}>Книги коллекции <span className={styles.collName}>{collection.title}</span></h1>
                     </div>
                     {books.length > 0 ? <CollectionList collections={books} ></CollectionList> : <p>Тут пока нет книг...</p>}
                 </CollectionSection>

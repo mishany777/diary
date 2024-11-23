@@ -8,4 +8,5 @@
   padding: 30px 40px;
   margin-top: 20px;
   flex-direction: column;
+  gap: 10px;
 }

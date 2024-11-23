@@ -8,6 +8,10 @@ export default function CoverBlock() {
           onClick={onClick}>
             <p>Сохранить</p>
           </button> */}
+          <div className={styles.buttons}>
+            <button className={styles.button + " " + styles.delete}>Delete</button>
+            <button className={styles.button + " " + styles.edit}>Edit</button>
+          </div>
         </div>
       );
 }

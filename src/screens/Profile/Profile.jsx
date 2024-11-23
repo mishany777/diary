@@ -13,7 +13,6 @@ export default function Profile() {
 
   const { user } = useAuth();
   const [statistics, setStatistics] = useState({});
-  const [collections, setCollections] = useState([]);
 
   const getStat = async () => {
     const username = user.username;
@@ -25,47 +24,8 @@ export default function Profile() {
     }
   }
 
-  const getCollections = async () => {
-    const username = user.username;
-    if (username){
-      await api.get(`/collections/user/${username}`)
-      .then(response => {
-        setCollections(response.data);
-      });
-    }
-  }
-  // const getStat = async () => {
-  //   const username = profileInfo.username;
-  //   if (username){
-  //     await api.get(`/users/user/${username}`)
-  //     .then(response => {
-  //       setStatistics(response.data['statistics']);
-  //     })
-  //   }
-  // }
-
-  // const getCollections = async () => {
-  //   const username = profileInfo.username;
-  //   if (username){
-  //     await api.get(`/collections/user/${username}`)
-  //     .then(response => {
-  //       setCollections(response.data);
-  //     });
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   setProfileInfo(user);
-  // }, [user]);
-
-  // useEffect(() => {
-  //   getStat();
-  //   getCollections();
-  // }, [profileInfo]);
-
   useEffect(() => {
     getStat();
-    getCollections();
   }, [user]);
 
   return (
@@ -77,7 +37,7 @@ export default function Profile() {
             {user ? <ProfileInfo profileInfo={user} statistics={statistics}></ProfileInfo> : <p>loading</p>}
           </ProfileSection>
           <ProfileSection>
-            {user ? <Collections collections={collections}></Collections> : <p>loading</p>}
+            {statistics ? <Collections statistics={statistics}></Collections> : <p>loading</p>}
           </ProfileSection>
         </div>
       </MainWrapper>
