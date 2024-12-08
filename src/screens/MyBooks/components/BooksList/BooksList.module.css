@@ -4,6 +4,7 @@
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  min-height: 200px;
 }
 
 .booksBlock {
@@ -11,4 +12,10 @@
   grid-template-columns: repeat(6, 1fr);
   gap: 40px;
   row-gap: 20px;
+}
+
+@media (max-width: 1850px) {
+  .booksBlock {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }

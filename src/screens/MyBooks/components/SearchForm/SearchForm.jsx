@@ -2,12 +2,20 @@ import styles from "../SearchForm/SearchForm.module.css";
 import searchIcon from "../../../../assets/searchIcon.svg";
 import addIcon from "../../../../assets/addIcon.svg";
 
-export default function SearchForm() {
+import { useState } from "react";
+
+export default function SearchForm(props) {
+
+  const [search, setSearch] = useState(props.searchValue);
+
   return (
     <div className={styles.searchForm}>
-      <div className={styles.searchBlock}>
+      <form className={styles.searchBlock}>
         <input
           type="text"
+          name="search"
+          value={search}
+          onChange={(e) => {setSearch(e.target.value)}}
           className={styles.inputForm}
           placeholder="Поиск по моим книгам"
         ></input>
@@ -15,15 +23,13 @@ export default function SearchForm() {
         <button className={styles.searchButton}>
           <img src={searchIcon} alt="Поиск"></img>
         </button>
-      </div>
+      </form>
 
-      <div className={styles.addButtonContainer}>
-        <a href="/addbook">
+        <a href="/addbook" className={styles.addButtonA}>
           <button className={styles.addButton}>
             <img src={addIcon} alt="Добавить"></img>
           </button>
         </a>
-      </div>
     </div>
   );
 }

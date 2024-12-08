@@ -1,69 +1,62 @@
-import styles from "../Collection/Collection.module.css";
 import Header from "../../shared/Header/Header";
 import MainWrapper from "../../shared/MainWrapper/MainWrapper";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import CollectionItem from "./components/CollectionItem/CollectionItem";
+import CreateCollectionItem from "./components/CreateCollectionItem/CreateCollectionItem";
+
+import styles from '../Collection/Collection.module.css';
+
+import api from '../../api'
+import { useAuth } from "../../AuthContext";
 
 export default function Collection() {
+
+  const { user } = useAuth();
   const [collections, setCollections] = useState([]);
-
-  const addCollection = () => {
-    setCollections([
-      ...collections,
-      { id: Date.now(), name: "", count: 0, status: "open" },
-    ]);
+  const [editMode, setEditMode] = useState(false);
+  
+  
+  const getCollections = async () => {
+    const username = user.username;
+    if (username) {
+      await api.get(`/collections/user/${username}`)
+      .then(res => {
+        const data = res.data;
+        setCollections(data);
+      })
+    }
   };
 
-  const deleteCollection = (id) => {
-    setCollections(collections.filter((collection) => collection.id !== id));
-  };
+  const toggleEdit = () => {
+    setEditMode(!editMode);
+  }
 
+  useEffect(() => {
+    getCollections();
+  }, [user])
+
+  useEffect(() => {
+    document.title = "Колллекции";
+  }, [])
+  
   return (
     <>
       <Header></Header>
       <MainWrapper>
-        <div className={styles.backgroung}>
+      <div className={styles.backgroung}>
           <p className={styles.name}>Коллекции</p>
           <div className={styles.collectionBlock}>
-            <div className={styles.collectionButtonBlock}>
-              <button
-                className={styles.collectionButton}
-                onClick={addCollection}
-              >
-                <p>+ Создать новую коллекцию</p>
-              </button>
-            </div>
-
-            {collections.map((collection) => (
-              <div key={collection.id} className={styles.collectionItem}>
-                <div className={styles.collectionInfo}>
-                  <input
-                    className={styles.collectionName}
-                    placeholder="Название"
-                    type="text"
-                  />
-                  <div className={styles.inputBlock}>
-                    <div className={styles.countBlock}>
-                      <p className={styles.collectionCount}>15 книг |</p>
-                    </div>
-                    <select
-                      className={styles.status}
-                      defaultValue={collection.status}
-                    >
-                      <option value="open">Публичная</option>
-                      <option value="privat">Приватная</option>
-                    </select>
-                  </div>
-                </div>
-                <div>
-                  <button
-                    className={styles.delete}
-                    onClick={() => deleteCollection(collection.id)}
-                  >
-                    <p>Удалить</p>
-                  </button>
-                </div>
-              </div>
-            ))}
+          <div className={styles.collectionButtonBlock}>
+            <button
+              className={styles.collectionButton}
+              onClick={() => {toggleEdit()}}>
+              <p>{editMode ? "-" : "+"} Создать новую коллекцию</p>
+            </button>
+          </div>
+          {editMode && <CreateCollectionItem toggle={toggleEdit} rerender={getCollections}></CreateCollectionItem>}
+          {collections.map((collection) => (
+            <CollectionItem collection={collection} rerender={getCollections}></CollectionItem>
+          ))}
           </div>
         </div>
       </MainWrapper>

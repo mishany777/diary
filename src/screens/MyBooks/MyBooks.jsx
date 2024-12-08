@@ -5,41 +5,53 @@ import ProfileSection from "../Profile/components/ProfileSection/ProfileSection"
 import BooksList from "./components/BooksList/BooksList";
 
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useAuth } from "../../AuthContext";
+import { useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import api from '../../api'
 
 export default function MyBooks() {
 
-  localStorage.removeItem("token");
+  const { user } = useAuth();
+  const [books, setBooks] = useState([]);
+  const [searchParams] = useSearchParams();
+  const searchValue = searchParams.get("search");
 
-  const [profileInfo, setProfileInfo] = useState({
-    "username": "",
-    "fist_name": "",
-    "last_name": "",
-    "email": ""
-  });
-
-  const getProfileInfo = async () => { 
-    await api.get('/users/user')
-    .then(response => {
-      setProfileInfo(response.data);
-    })
+  const getBooks = async () => {
+    const username = user.username;
+    if (username) {
+      api.get(`/books/user/${username}${searchValue ? `?search=${searchValue}` : ""}`)
+      .then(response => {
+        setBooks(response.data);
+      })
+      .catch(error => {
+        alert(error);
+      });
+    }
   }
 
   useEffect(() => {
-    getProfileInfo();
-  }, [])
-  console.log(profileInfo);
+    getBooks();
+  }, [user])
+
+  useEffect(() => {
+    document.title = "Мои книги";
+  }, []);
 
   return (
     <>
       <Header></Header>
       <MainWrapper>
         <div className="test">
-          <SearchForm></SearchForm>
-          <ProfileSection>
-            <BooksList profileInfo={profileInfo}></BooksList>
+          <SearchForm searchValue={searchValue}></SearchForm>
+          {books.length > 0 ? <ProfileSection>
+            {user ?
+            <BooksList books={books}></BooksList> : <p>loading</p>}
           </ProfileSection>
+          : 
+          <></>}
         </div>
       </MainWrapper>
     </>

@@ -3,123 +3,132 @@ import Section from "../Section/Section";
 import dateIcon from "../../../../assets/dateIcon.svg";
 import React, { useState } from "react";
 
-export default function BookInfo() {
-  const [selectedStatus, setSelectedStatus] = useState("");
-  const collections = [
-    { name: "Классика", status: "open" },
-    { name: "Фентези", status: "private" },
-    { name: "Для школы", status: "open" },
-    { name: "Мой топ", status: "private" },
-  ];
-
-  const handleSelectChange = (e) => {
-    const selectedCollection = collections.find(
-      (collection) => collection.name === e.target.value
-    );
-    setSelectedStatus(selectedCollection?.status || "");
-  };
+export default function BookInfo(props) {
 
   return (
     <Section>
       <div className={styles.mainContainer}>
         <div className={styles.title}>
-          <input
-            type="text"
-            className={styles.inputAuthor}
-            placeholder="Aвтор"
-          ></input>
-          <input
-            type="text"
-            className={styles.inputName}
-            placeholder="Название "
-          ></input>
+
+          <div className={styles.description}>
+            <p className={styles.fname}>Автор</p>
+            <input
+              type="text"
+              className={styles.inputField}
+              onChange={(e) => props.changeBookInfo("author", e.target.value)}
+              value={props.bookInfo.author}
+              required
+              placeholder="Пушкин Александр Сергеевич"
+            ></input>
+          </div>
+
+          <div className={styles.description}>
+            <p className={styles.fname}>Название книги</p>
+            <input
+              type="text"
+              className={styles.inputField}
+              onChange={(e) => props.changeBookInfo("title", e.target.value)}
+              value={props.bookInfo.title}
+              placeholder="Отцы и дети"
+            ></input>
+          </div>
         </div>
         <div className={styles.statInfo}>
           <div className={styles.ratingArea}>
-            <input type="radio" id="star-5" name="rating" value="5" />
+            <input type="radio" id="star-5"
+            onChange={(e) => props.changeBookInfo("rating", e.target.value)}
+            name="rating" value={5} />
             <label
               htmlFor="star-5"
               title="Оценка «5»"
               className={styles.starLabel}
             ></label>
-            <input type="radio" id="star-4" name="rating" value="4" />
+            <input type="radio" id="star-4"
+            onChange={(e) => props.changeBookInfo("rating", e.target.value)}
+             name="rating" value="4" />
             <label
               htmlFor="star-4"
               title="Оценка «4»"
               className={styles.starLabel}
             ></label>
-            <input type="radio" id="star-3" name="rating" value="3" />
+            <input type="radio" id="star-3"
+            onChange={(e) => props.changeBookInfo("rating", e.target.value)}
+             name="rating" value="3" />
             <label
               htmlFor="star-3"
               title="Оценка «3»"
               className={styles.starLabel}
             ></label>
-            <input type="radio" id="star-2" name="rating" value="2" />
+            <input type="radio" id="star-2"
+            onChange={(e) => props.changeBookInfo("rating", e.target.value)}
+            name="rating" value="2" />
             <label
               htmlFor="star-2"
               title="Оценка «2»"
               className={styles.starLabel}
             ></label>
-            <input type="radio" id="star-1" name="rating" value="1" />
+            <input type="radio" id="star-1"
+            onChange={(e) => props.changeBookInfo("rating", e.target.value)}
+            name="rating" value="1" />
             <label
               htmlFor="star-1"
               title="Оценка «1»"
               className={styles.starLabel}
             ></label>
           </div>
-          <input
-            type="number"
-            min="1"
-            className={styles.inputPages}
-            step="1"
-            placeholder="Cтраниц"
-          />
+
+          <div className={styles.description}>
+            <p className={styles.fname}>Страницы</p>
+            <input
+              type="number"
+              min="1"
+              className={styles.inputPages}
+              onChange={(e) => props.changeBookInfo("pages", e.target.value)}
+              value={props.bookInfo.pages || ""}
+              placeholder="437"/>
+          </div>
 
           <div>
+          <div className={styles.description}>
+            <p className={styles.fname}>Приватность</p>
             <select
-              id="dropdownInput"
-              name="dropdownInput"
-              className={`${styles.dropdownInput} ${
-                selectedStatus === "open" ? styles.open : styles.private
-              }`}
-              defaultValue=""
-              onChange={handleSelectChange}
-            >
-              <option value="" disabled hidden>
-                Коллекция
-              </option>
-              {collections.map((collection, index) => (
-                <option
-                  key={index}
-                  value={collection.name}
-                  data-status={collection.status}
-                >
-                  {collection.name}
-                </option>
-              ))}
+                className={styles.privacy}
+                defaultValue={props.bookInfo.private}
+                onChange={(e) => props.changeBookInfo("private", e.target.value)}>
+                <option value={false}>Публичная</option>
+                <option value={true}>Приватная</option>
             </select>
           </div>
-
-          <div className={styles.dateInputContainer}>
-            <input
-              type="date"
-              placeholder="Старт 00.00.0000"
-              className={styles.dateInput}
-            />
-            <button className={styles.dateButton}>
-              <img src={dateIcon} alt="Календарь"></img>
-            </button>
           </div>
-
-          <div className={styles.dateInputContainer}>
-            <input
-              type="date"
-              placeholder="Конец 00.00.0000"
-              className={styles.dateInput}
-            />
-            <button className={styles.dateButton}>
-              <img src={dateIcon} alt="Календарь"></img>
-            </button>
+          <div className={styles.times}>
+          <div className={styles.description}>
+            <p className={styles.fname}>Дата начала</p>
+            <div className={styles.dateInputContainer}>
+              <input
+                type="date"
+                value={props.bookInfo.start_date || ""}
+                onChange={(e) => props.changeBookInfo("start_date", e.target.value)}
+                className={styles.dateInput}
+              />
+              <button className={styles.dateButton}>
+                <img src={dateIcon} alt="Календарь"></img>
+              </button>
+            </div>
+          </div>
+          <div className={styles.description}>
+            <p className={styles.fname}>Дата завершения</p>
+            <div className={styles.dateInputContainer}>
+              <input
+                type="date"
+                value={props.bookInfo.finish_date || ""}
+                onChange={(e) => props.changeBookInfo("finish_date", e.target.value)}
+                className={styles.dateInput}
+              />
+              <button className={styles.dateButton}>
+                <img src={dateIcon} alt="Календарь"></img>
+              </button>
+            </div>
+          </div>
           </div>
         </div>
       </div>

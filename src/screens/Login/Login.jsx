@@ -1,11 +1,16 @@
 import styles from '../Login/Login.module.css'
 import api from '../../api'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { redirect, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../AuthContext';
+
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     
     const navigate = useNavigate();
+
+    const { login } = useAuth();
 
     const [loginData, setLoginData] = useState({
         "username": "",
@@ -16,23 +21,25 @@ export default function Login() {
         setLoginData({...loginData, [e.target.name]: e.target.value})
     }
 
-    const {username, password, first_name, last_name, email} = loginData;
+    const {username, password } = loginData;
 
-    const onSubmit = (e) => {
+
+    useEffect(() => {
+        document.title = "Вход";
+    }, []);
+
+    const onSubmit = async (e) => {
         e.preventDefault();
         console.log('submit');
-        api.post('/users/login/', loginData)
+        await api.post('/users/login/', loginData)
         .then(response => {
             const data = response.data;
-            console.log(data);
-            const key = data['key'];
-            localStorage.setItem('token', key);
-            console.log(localStorage.getItem('token'));
-            navigate("/profile");
+            login(data.key);
         })
         .catch(error => {
             alert(error);
         })
+        navigate("/profile");
     }
 
     return (
@@ -49,7 +56,7 @@ export default function Login() {
                         <input type="password" required onChange={onChange} value={password} name="password" />
                     </div>
                     <button className={styles.submit}>Войти</button>
-                    <a href="" className={styles.login_link}>Еще нет аккаунта? <span className={styles.login_link_hover}>Зарегистрироваться</span></a>
+                    <Link to="/register" className={styles.login_link}>Еще нет аккаунта? <span className={styles.login_link_hover}>Зарегистрироваться</span></Link>
                 </form>
             </div>
         </>
