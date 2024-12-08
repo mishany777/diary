@@ -89,3 +89,15 @@
 .statisticNumb {
   font-size: 32px;
 }
+
+.editButton {
+  font-size: 16px;
+  background-color: #b7b7b7;
+  width: min-content;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-weight: 300;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+}

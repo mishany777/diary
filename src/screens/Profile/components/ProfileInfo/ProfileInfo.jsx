@@ -14,6 +14,7 @@ export default function ProfileInfo(props) {
 
   const { username, first_name, last_name, email } = props.profileInfo;
   const { per_day, per_month, per_year, anytime } = props.statistics;
+  const [isEdit, setIsEdit] = useState(false);
 
   return (
     <div className={styles.profileDiv}>
@@ -26,11 +27,9 @@ export default function ProfileInfo(props) {
         <div className={styles.statusBlock}>
           <p>{first_name + " " + last_name}</p>
           <div className={styles.quoteBlock}>
-            {/* <img src={statusIcon} alt="Статус"></img> */}
-            <p>
-              Сошел с ума после прочтения Война и Мир,пока читал его в школе
-            </p>
+          {isEdit ? null : <p>Сошел с ума после прочтения Война и Мир,пока читал его в школе</p>}
           </div>
+          <button className={styles.editButton}>Редактировать</button>
         </div>
       </div>
 

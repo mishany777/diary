@@ -1,5 +1,6 @@
 import styles from "../BooksList/BooksList.module.css";
-import BookItem from "../BookItem/BookItem";
+// import BookItem from "../BookItem/BookItem";
+import BookItem from "../../../../shared/BookItem/BookItem";
 
 import { useEffect, useState } from "react";
 

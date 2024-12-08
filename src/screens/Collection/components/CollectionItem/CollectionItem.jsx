@@ -51,7 +51,7 @@ export default function CollectionItem(props) {
         <div className={styles.collectionItem}>
             <div className={styles.collectionInfo}>
                 <Link className={styles.collectionLink} to={`/collections/${item.uuid}`}>
-                    <p>{item.title}</p>
+                    <p className={styles.collectionTitle}>{item.title}</p>
                 </Link>
             <div className={styles.inputBlock}>
                 <div className={styles.countBlock}>

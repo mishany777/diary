@@ -1,5 +1,5 @@
 import styles from "../BookItem/BookItem.module.css";
-import book_photo from "../../../../assets/book_fill.jpg";
+import book_photo from "../../assets/book_fill.jpg";
 import { Link } from "react-router-dom";
 
 export default function BookItem(props) {
