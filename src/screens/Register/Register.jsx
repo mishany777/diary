@@ -3,9 +3,15 @@ import MainWrapper from "../../shared/MainWrapper/MainWrapper";
 import styles from '../Register/Register.module.css'
 import logoIcon from '../../assets/logoIcon.svg'
 import api from '../../api'
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const [regData, setRegData] = useState({
         "username": "",
@@ -24,7 +30,20 @@ export default function Register() {
     const onSubmit = async (e) => {
         e.preventDefault();
         console.log('submit');
-    }
+        await api.post('/users/register/', regData)
+        .then(response => {
+            const data = response.data;
+            login(data['key']);
+        })
+        .catch(error => {
+            alert(error);
+        })
+        navigate("/profile");
+    }   
+
+    useEffect(() => {
+        document.title = "Регистрация";
+    }, []);
 
     return (
     <>
@@ -54,7 +73,7 @@ export default function Register() {
                     <input type="password" required onChange={onChange} value={password} name="password" />
                 </div>
                 <button className={styles.submit}>Зарегестрироваться</button>
-                <a href="" className={styles.login_link}>Уже есть аккаунт? <span className={styles.login_link_hover}>Войти</span></a>
+                <Link to="/login" className={styles.login_link}>Уже есть аккаунт? <span className={styles.login_link_hover}>Войти</span></Link>
             </form>
         </div>
     </>

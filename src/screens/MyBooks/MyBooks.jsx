@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAuth } from "../../AuthContext";
 import { useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import api from '../../api'
 
@@ -35,15 +36,22 @@ export default function MyBooks() {
     getBooks();
   }, [user])
 
+  useEffect(() => {
+    document.title = "Мои книги";
+  }, []);
+
   return (
     <>
       <Header></Header>
       <MainWrapper>
         <div className="test">
           <SearchForm searchValue={searchValue}></SearchForm>
-          <ProfileSection>
-            {user ? <BooksList books={books}></BooksList> : <p>loading</p>}
+          {books.length > 0 ? <ProfileSection>
+            {user ?
+            <BooksList books={books}></BooksList> : <p>loading</p>}
           </ProfileSection>
+          : 
+          <></>}
         </div>
       </MainWrapper>
     </>

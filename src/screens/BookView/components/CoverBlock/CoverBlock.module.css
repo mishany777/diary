@@ -7,8 +7,12 @@
 .coverForm {
     width: 400px;
     height: 600px;
-    border: 3px solid #baa1ff;
+    /* border: 3px solid #baa1ff; */
+    background-color: #baa1ff;
     border-radius: 20px;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
 }
 
 .saveButton {
@@ -22,6 +26,11 @@
     box-shadow: 8px 8px 8.8px 0px #00000040;
     margin-top: 20px;
     border: solid #baa1ff;
+}
+
+.img_photo {
+    height: 100%;
+    margin: 0 auto;
 }
 
 .saveButton:hover {

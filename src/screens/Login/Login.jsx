@@ -1,8 +1,10 @@
 import styles from '../Login/Login.module.css'
 import api from '../../api'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { redirect, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../AuthContext';
+
+import { Link } from 'react-router-dom';
 
 export default function Login() {
     
@@ -21,18 +23,23 @@ export default function Login() {
 
     const {username, password } = loginData;
 
-    const onSubmit = (e) => {
+
+    useEffect(() => {
+        document.title = "Вход";
+    }, []);
+
+    const onSubmit = async (e) => {
         e.preventDefault();
         console.log('submit');
-        api.post('/users/login/', loginData)
+        await api.post('/users/login/', loginData)
         .then(response => {
             const data = response.data;
             login(data.key);
-            navigate("/profile");
         })
         .catch(error => {
             alert(error);
         })
+        navigate("/profile");
     }
 
     return (
@@ -49,7 +56,7 @@ export default function Login() {
                         <input type="password" required onChange={onChange} value={password} name="password" />
                     </div>
                     <button className={styles.submit}>Войти</button>
-                    <a href="" className={styles.login_link}>Еще нет аккаунта? <span className={styles.login_link_hover}>Зарегистрироваться</span></a>
+                    <Link to="/register" className={styles.login_link}>Еще нет аккаунта? <span className={styles.login_link_hover}>Зарегистрироваться</span></Link>
                 </form>
             </div>
         </>

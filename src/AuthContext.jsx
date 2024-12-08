@@ -7,10 +7,19 @@ export const AuthProvider = ({children}) => {
     const [user, setUser] = useState({});
     const [key, setKey] = useState();
 
-    const login = (key) => {
+    const login = async(key) => {
         setKey(key);
         localStorage.setItem('key', key);
+        api.defaults.headers.common['Authorization'] = `Token ${key}`;
+        await getUser();
     };
+
+    const logout = () => {
+        localStorage.removeItem('key');
+        localStorage.removeItem('user');
+        setUser({});
+        setKey(null);
+    }
 
     const getUser = async () => {
         await api.get('/users/user')
@@ -37,7 +46,7 @@ export const AuthProvider = ({children}) => {
         
     }, []);
 
-    return (<AuthContext.Provider value={{ user, login, key }}>
+    return (<AuthContext.Provider value={{ user, login, key, logout }}>
         {children}
         </AuthContext.Provider>);
 };

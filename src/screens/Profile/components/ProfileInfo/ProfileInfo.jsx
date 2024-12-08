@@ -5,6 +5,7 @@ import speedIcon from "../../../../assets/speedIcon.png";
 import monthIcon from '../../../../assets/month_calendar.svg';
 import alltime from '../../../../assets/time-past.svg';
 import ball from '../../../../assets/cristmas.svg';
+import spinner from "../../../../assets/spinner.svg"
 
 import { useState, useEffect } from "react";
 import api from '../../../../api'
@@ -16,26 +17,37 @@ export default function ProfileInfo(props) {
   const { per_day, per_month, per_year, anytime } = props.statistics;
   const [isEdit, setIsEdit] = useState(false);
 
+  const handleEdit = () => {
+    setIsEdit(!isEdit);
+  }
+
   return (
     <div className={styles.profileDiv}>
+
       <div className={styles.userInfo}>
         <div className={styles.profileBlock}>
-          <img src={bigProfileIcon} alt="Профиль"></img>
-          <p>{username}</p>
+          {username ? <>
+            <img src={bigProfileIcon} alt="Профиль"></img>
+            <p>{username}</p>
+          </> : <img src={spinner} alt="Загрузка"></img>}
+            
         </div>
-
         <div className={styles.statusBlock}>
-          <p>{first_name + " " + last_name}</p>
+          {username ? <>
+            {isEdit ? <input value={first_name + " " + last_name} /> : <p>{first_name + " " + last_name}</p>}
           <div className={styles.quoteBlock}>
-          {isEdit ? null : <p>Сошел с ума после прочтения Война и Мир,пока читал его в школе</p>}
+          {isEdit ? <textarea value="Сошел с ума после прочтения Война и Мир,пока читал его в школе" /> : <p>Сошел с ума после прочтения Война и Мир,пока читал его в школе</p>}
           </div>
-          <button className={styles.editButton}>Редактировать</button>
+          <button className={styles.editButton} onClick={handleEdit}>{isEdit ? "Сохранить" : "Редактировать"}</button>
+          </> : <img src={spinner} alt="Загрузка"></img>}
+          
         </div>
       </div>
 
       <div className={styles.statisticBlock}>
         <ul className={styles.statisticList}>
-          <li className={styles.statisticElem}>
+          {username ? <>
+            <li className={styles.statisticElem}>
             <img src={speedIcon} width={60} alt="Скорость"></img>
             <p>
               <span>{per_day}</span> страниц в день
@@ -59,6 +71,7 @@ export default function ProfileInfo(props) {
               <span>{anytime}</span> книг за все время
             </p>
           </li>
+          </> : <img  src={spinner} width={190} alt="Скорость"></img>}         
         </ul>
       </div>
     </div>

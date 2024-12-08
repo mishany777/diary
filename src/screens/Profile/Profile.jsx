@@ -8,6 +8,7 @@ import api from '../../api'
 import { useAuth } from "../../AuthContext";
 
 import { useState, useEffect } from "react";
+import { use } from "react";
 
 export default function Profile() {
 
@@ -27,6 +28,10 @@ export default function Profile() {
   useEffect(() => {
     getStat();
   }, [user]);
+
+  useEffect(() => {
+    document.title = "Профиль";
+  }, []);
 
   return (
     <>

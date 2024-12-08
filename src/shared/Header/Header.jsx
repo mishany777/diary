@@ -4,11 +4,27 @@ import styles from "./Header.module.css";
 import MainWrapper from "../MainWrapper/MainWrapper";
 import axios from "axios";
 
-import { Link } from "react-router-dom";
+import logout_svg from "../../assets/logout.svg"
+import login_svg from "../../assets/login.svg"
+
+import { Link, redirect } from "react-router-dom";
 import api from "../../api";
+import { useAuth } from "../../AuthContext";
+
+import { useNavigate } from "react-router-dom";
 
 
 export default function Header() {
+
+  const navigate = useNavigate();
+
+  const { user, key, logout } = useAuth();
+
+  const logout_button = () => {
+    logout();
+    navigate("/login");
+  }
+
   return (
     <header className={styles.header}>
       <MainWrapper>
@@ -26,9 +42,15 @@ export default function Header() {
                 <a href="/mybooks">Мои книги</a>
               </li>
               <li className={styles.miniProfile}>
-                <Link to='/profile'>
-                  <img src={miniProfileIcon} alt="Профиль" />
-                </Link>
+                { key ? (
+                  <>
+                    <Link to='/profile'>
+                    <img className={styles.userProfile} src={miniProfileIcon} alt="Профиль" />
+                    </Link>
+                    <img className={styles.logout} src={logout_svg} onClick={logout_button} />
+                  </>  
+                  ) : <img className={styles.logout} src={login_svg} onClick={logout_button} />
+                  }
               </li>
             </ul>
           </nav>

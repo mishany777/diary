@@ -2,7 +2,7 @@ import Header from "../../shared/Header/Header";
 import MainWrapper from "../../shared/MainWrapper/MainWrapper";
 import CoverBlock from "../AddBook/components/CoverBlock/CoverBlock";
 import AddBlock from "../AddBook/components/AddBlock/AddBlock";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from '../../api'
 
 import { useNavigate } from "react-router-dom";
@@ -90,6 +90,9 @@ export default function AddBook() {
     
   }
 
+  useEffect(() => {
+    document.title = "Создание книги";
+  }, []);
 
   return (
     <>

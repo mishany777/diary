@@ -7,7 +7,7 @@ export default function CollectionList(props) {
         <div className={styles.list}>
             <ul className={styles.collectionList}>
                 {props.collections.map(item => (
-                    <BookItem title={item.title} author={item.author} uuid={item.uuid}></BookItem>
+                    <BookItem title={item.title} author={item.author} uuid={item.book_id}></BookItem>
                 ))}
             </ul>
         </div>
