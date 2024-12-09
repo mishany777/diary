@@ -6,19 +6,48 @@ import monthIcon from '../../../../assets/month_calendar.svg';
 import alltime from '../../../../assets/time-past.svg';
 import ball from '../../../../assets/cristmas.svg';
 import spinner from "../../../../assets/spinner.svg"
+import { useAuth } from "../../../../AuthContext";
 
 import { useState, useEffect } from "react";
 import api from '../../../../api'
 
 export default function ProfileInfo(props) {
   
-
-  const { username, first_name, last_name, email } = props.profileInfo;
+  const { getUser } = useAuth();
+  const { username, first_name, last_name, email, bio } = props.profileInfo;
   const { per_day, per_month, per_year, anytime } = props.statistics;
   const [isEdit, setIsEdit] = useState(false);
 
-  const handleEdit = () => {
+  const [editInfo, setEditInfo] = useState({});
+
+  const handleEdit = async () => {
+    if (!isEdit) {
+      const data = {
+        "first_name": first_name,
+        "last_name": last_name,
+        "bio": bio
+      } 
+      setEditInfo(data);
+    }
+
+    if (isEdit) {
+      console.log(editInfo);
+      await api.put('/users/user/update/', editInfo)
+      .then(res => {
+        getUser();
+      })
+      .catch(err => {
+        alert(err);
+      })
+    }
+
     setIsEdit(!isEdit);
+  }
+
+  const on_change = (key, value) => {
+    const info = {...editInfo};
+    info[key] = value;
+    setEditInfo(info);
   }
 
   return (
@@ -34,9 +63,14 @@ export default function ProfileInfo(props) {
         </div>
         <div className={styles.statusBlock}>
           {username ? <>
-            {isEdit ? <input value={first_name + " " + last_name} /> : <p>{first_name + " " + last_name}</p>}
+            {isEdit ? <>
+            <input value={editInfo.first_name} onChange={(e) => on_change("first_name", e.target.value)} />
+            <input value={editInfo.last_name} onChange={(e) => on_change("last_name", e.target.value)} />
+            </> : <p>{first_name + " " + last_name}</p>}
           <div className={styles.quoteBlock}>
-          {isEdit ? <textarea value="Сошел с ума после прочтения Война и Мир,пока читал его в школе" /> : <p>Сошел с ума после прочтения Война и Мир,пока читал его в школе</p>}
+          {isEdit ? <textarea value={editInfo.bio} onChange={(e) => on_change("bio", e.target.value)} /> 
+          : 
+          <p>{bio ? bio : "Нет описания"}</p>}
           </div>
           <button className={styles.editButton} onClick={handleEdit}>{isEdit ? "Сохранить" : "Редактировать"}</button>
           </> : <img src={spinner} alt="Загрузка"></img>}
