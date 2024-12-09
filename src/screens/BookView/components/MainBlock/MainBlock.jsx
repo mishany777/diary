@@ -1,16 +1,51 @@
 import { useEffect, useState } from 'react';
 import styles from '../MainBlock/MainBlock.module.css'
 import Note from '../Note/Note';
+import api from "../../../../api"
+import { useAuth } from "../../../../AuthContext";
 
 export default function MainBlock(props) {
+
+    const { user } = useAuth();
+
+    const [collections, setCollections] = useState([]);
+
+    useEffect(() => {
+        if (!user.username) {
+            return;
+        }
+        api.get(`/collections/user/${user.username}`)
+        .then(res => {
+            setCollections(res.data);
+        })
+        .catch(err => {
+            alert(err);
+        })
+    }, [user])
 
     const stars = Math.floor(props.book.rating);
     return (
     <div className={styles.container}>
         <div className={styles.bookInfo + " " + styles.container_wrap}>
-            <h1 className={styles.title}>{props.book.title}</h1>
-            <h1 className={styles.author}>{props.book.author}</h1>
-            <div className={styles.ratings}>
+            <div style={{display: "flex", justifyContent: "space-between"}}>
+                <div>
+                    <h1 className={styles.title}>{props.book.title}</h1>
+                    <h1 className={styles.author}>{props.book.author}</h1>
+                </div>
+                <div className={styles.dropdown}>
+                    <button className={styles.dropdownInput}>Выбрать коллекции</button>
+                    <ul className={styles.dropdownList}>
+                        <li>
+                            <input className={styles.dropdownInput} type="text" placeholder="Поиск" />
+                        </li>
+                        {collections.map(collection => (
+                            <li><label><input type="checkbox" />{collection.title}</label></li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+           <div className={styles.ratings}>
+            
                 <div className={styles.ratingArea}>
                     {stars ? (Array(5).fill(1).map((_, i) => (<label
                     htmlFor="star-5"
@@ -19,7 +54,8 @@ export default function MainBlock(props) {
                     ></label>))) : ""}
                 </div>
                 <div className={styles.pagesDiv}><p>{props.book.pages} страниц</p></div>
-            </div>          
+            </div>  
+                
         </div>
         
         <div className={styles.retelling + " " + styles.container_wrap}>

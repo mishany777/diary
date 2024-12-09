@@ -18,6 +18,8 @@ export default function ProfileInfo(props) {
   const { per_day, per_month, per_year, anytime } = props.statistics;
   const [isEdit, setIsEdit] = useState(false);
 
+  const [wasChanged, setWasChanged] = useState(false);
+
   const [editInfo, setEditInfo] = useState({});
 
   const handleEdit = async () => {
@@ -30,11 +32,12 @@ export default function ProfileInfo(props) {
       setEditInfo(data);
     }
 
-    if (isEdit) {
+    if (isEdit && wasChanged) {
       console.log(editInfo);
       await api.put('/users/user/update/', editInfo)
       .then(res => {
         getUser();
+        wasChanged(false);
       })
       .catch(err => {
         alert(err);
@@ -48,6 +51,7 @@ export default function ProfileInfo(props) {
     const info = {...editInfo};
     info[key] = value;
     setEditInfo(info);
+    setWasChanged(true);
   }
 
   return (
