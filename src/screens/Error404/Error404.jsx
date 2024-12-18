@@ -6,8 +6,10 @@ export default function Error404() {
         <>
         <Header></Header>
         <div className={styles.div}>
-            <h1 className={styles.title}>Ошибка 404</h1>
-            <p>Такой страницы не существует</p>
+            <div className={styles.text}>
+                <h1 className={styles.title}>TODO</h1>
+                <p>пока в разработке...</p>
+            </div>    
         </div>
         </>
 );

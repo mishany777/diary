@@ -4,8 +4,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: auto 0;
 }
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+}
+
 
 .title {
     font-size: 60px;

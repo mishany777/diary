@@ -92,7 +92,7 @@
 
 .editButton {
   font-size: 16px;
-  background-color: #b7b7b7;
+  background-color: rgba(158, 158, 158, 0.7);
   width: min-content;
   padding: 5px 10px;
   border-radius: 10px;
@@ -100,4 +100,20 @@
   /* margin-top: 10px; */
   border: none;
   cursor: pointer;
+}
+
+.editFieldName {
+  /* padding: 5px 10px;
+  border-radius: 5px; */
+  font-size: 18px;
+  padding: 2px;
+}
+
+.editFieldBio {
+  font-size: 14px;
+  font-weight: 200;
+  width: 100%;
+  resize: vertical;
+  max-height: 140px;
+  min-height: 40px;
 }

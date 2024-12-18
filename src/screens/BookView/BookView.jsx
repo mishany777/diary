@@ -46,7 +46,7 @@ export default function BookView() {
             <Header></Header>
             <MainWrapper>
                 <div className={styles.div}>
-                    <CoverBlock></CoverBlock>
+                    <CoverBlock book={book}></CoverBlock>
                     <MainBlock notes={notes} book={book}></MainBlock>
                 </div>
 

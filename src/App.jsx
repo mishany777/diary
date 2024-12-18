@@ -10,6 +10,7 @@ import Collection from "./screens/Collection/Collection";
 import Error404 from "./screens/Error404/Error404";
 import BookView from "./screens/BookView/BookView";
 import CollectionView from "./screens/CollectionView/CollectionView";
+import Search from "./screens/Search/Search";
 
 import { BrowserRouter, Routes, Route, Navigate, redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +26,7 @@ export default function App() {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
+          <Route path="/" element={<Search/>} />
           <Route path="/profile" element={<Profile/>} />
           <Route path="/mybooks" element={<MyBooks/>} />
           <Route path="/books/:uuid" element={<BookView/>} />
