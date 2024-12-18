@@ -37,7 +37,7 @@ export default function ProfileInfo(props) {
       await api.put('/users/user/update/', editInfo)
       .then(res => {
         getUser();
-        wasChanged(false);
+        setWasChanged(false);
       })
       .catch(err => {
         alert(err);
@@ -68,11 +68,11 @@ export default function ProfileInfo(props) {
         <div className={styles.statusBlock}>
           {username ? <>
             {isEdit ? <>
-            <input value={editInfo.first_name} onChange={(e) => on_change("first_name", e.target.value)} />
-            <input value={editInfo.last_name} onChange={(e) => on_change("last_name", e.target.value)} />
+            <input value={editInfo.first_name} className={styles.editFieldName} onChange={(e) => on_change("first_name", e.target.value)} />
+            <input value={editInfo.last_name} className={styles.editFieldName} onChange={(e) => on_change("last_name", e.target.value)} />
             </> : <p>{first_name + " " + last_name}</p>}
           <div className={styles.quoteBlock}>
-          {isEdit ? <textarea value={editInfo.bio} onChange={(e) => on_change("bio", e.target.value)} /> 
+          {isEdit ? <textarea className={styles.editFieldBio} value={editInfo.bio} onChange={(e) => on_change("bio", e.target.value)} /> 
           : 
           <p>{bio ? bio : "Нет описания"}</p>}
           </div>

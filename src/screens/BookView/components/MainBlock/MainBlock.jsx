@@ -9,6 +9,7 @@ export default function MainBlock(props) {
     const { user } = useAuth();
 
     const [collections, setCollections] = useState([]);
+    const [bookCollections, setBookCollections] = useState([]);
 
     useEffect(() => {
         if (!user.username) {
@@ -21,7 +22,45 @@ export default function MainBlock(props) {
         .catch(err => {
             alert(err);
         })
+        
     }, [user])
+
+    useEffect(() => {
+        if (!props.book.book_id) {
+            return;
+        }
+        api.get(`/books/${props.book.book_id}/collections`)
+        .then(res => {
+            const data = res.data;
+            const clear_data = data.map(collection => (collection.uuid));
+            setBookCollections(clear_data);
+        })
+        .catch(err => {
+            alert(err);
+        })
+    }, [props.book.book_id])
+
+    const onCheckboxToggle = async(uuid, checked) => {
+        const data = {
+            "book_id": props.book.book_id
+        }
+        if (!checked) {
+            await api.post(`/collections/${uuid}/add_book`, data)
+            .then(res => {
+                const data = res.data;
+                setBookCollections([...bookCollections, uuid]);
+            })
+        }
+        else {
+            await api.post(`/collections/${uuid}/remove_book`, data)
+            .then(res => {
+                const data = res.data;
+                setBookCollections(bookCollections.filter(item => item !== uuid));
+            })
+        }
+    }
+
+    console.log(bookCollections);
 
     const stars = Math.floor(props.book.rating);
     return (
@@ -33,13 +72,13 @@ export default function MainBlock(props) {
                     <h1 className={styles.author}>{props.book.author}</h1>
                 </div>
                 <div className={styles.dropdown}>
-                    <button className={styles.dropdownInput}>Выбрать коллекции</button>
+                    <button className={styles.dropdownInput}>Добавить в коллекции</button>
                     <ul className={styles.dropdownList}>
-                        <li>
+                        {/* <li>
                             <input className={styles.dropdownInput} type="text" placeholder="Поиск" />
-                        </li>
-                        {collections.map(collection => (
-                            <li><label><input type="checkbox" />{collection.title}</label></li>
+                        </li> */}
+                        {collections.map(item => (
+                            <li><label><input type="checkbox" onChange={() => onCheckboxToggle(item.uuid, bookCollections.includes(item.uuid))} checked={bookCollections.includes(item.uuid)} />{item.title}</label></li>
                         ))}
                     </ul>
                 </div>

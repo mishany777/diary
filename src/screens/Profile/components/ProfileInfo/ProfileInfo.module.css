@@ -101,3 +101,19 @@
   border: none;
   cursor: pointer;
 }
+
+.editFieldName {
+  /* padding: 5px 10px;
+  border-radius: 5px; */
+  font-size: 18px;
+  padding: 2px;
+}
+
+.editFieldBio {
+  font-size: 14px;
+  font-weight: 200;
+  width: 100%;
+  resize: vertical;
+  max-height: 140px;
+  min-height: 40px;
+}
