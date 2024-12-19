@@ -15,6 +15,7 @@ export default function Search() {
     const [searchParams] = useSearchParams();
     const [inputValue, setInputValue] = useState(searchParams.get("search"));
     const searchValue = searchParams.get("search");
+    
 
     const handleInputChange = (value) => {
         setInputValue(value);
@@ -27,6 +28,8 @@ export default function Search() {
         await api.get(`/books/search/websearch?search=${searchValue}`)
         .then(response => {
             setResult(response.data);
+            document.title = "Поиск: " + searchValue;
+            
         })
         .catch(error => {
             alert(error);
@@ -49,9 +52,9 @@ export default function Search() {
                         className={styles.inputForm}
                         value={inputValue}
                         onChange={(e) => handleInputChange(e.target.value)}
-                        placeholder="Поиск по моим книгам"
+                        placeholder="Поиск по сайту"
                         ></input>
-
+                        
                         <button className={styles.searchButton} onClick={search}>
                         <img src={searchIcon} alt="Поиск"></img>
                         </button>
