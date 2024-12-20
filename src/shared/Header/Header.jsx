@@ -37,7 +37,7 @@ export default function Header() {
           <nav>
             <ul className={styles.navList}>
               <li className={styles.navContainer}>
-                <a href="/">Подписки</a>
+                <a href="/">Главная</a>
                 <a href="/collections">Коллекции</a>
                 <a href="/mybooks">Мои книги</a>
               </li>

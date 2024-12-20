@@ -42,6 +42,10 @@ export default function Search() {
     }, [searchValue])
 
     const getTwoLast = async () => {
+        if (searchValue) {
+            return;
+        }
+        console.log("getTwoLast");
         await api.get(`/books/get_two_last/`)
         .then(response => {
             setTwoLast(response.data);
