@@ -14,6 +14,8 @@ export default function BookView() {
     const [book, setBook] = useState({});
     const [notes, setNotes] = useState([]);
 
+    const [showModal, setShowModal] = useState(true);
+
     const getBook = async () => {
         await api.get(`/books/${uuid}`)
         .then(res => {
@@ -49,7 +51,6 @@ export default function BookView() {
                     <CoverBlock book={book}></CoverBlock>
                     <MainBlock notes={notes} book={book}></MainBlock>
                 </div>
-
             </MainWrapper>
         </>
     );
