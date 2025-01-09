@@ -48,6 +48,10 @@ export default function AddBook() {
         alert("Заполните все поля!");
         return false;
       }
+      if (bookInfo['start_date'] > bookInfo['finish_date']) {
+        alert("Дата окончания не может быть раньше даты начала!");
+        return false;
+      }
     }
     return true;
   }

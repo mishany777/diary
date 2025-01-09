@@ -51,6 +51,8 @@
 .ratingArea {
   overflow: hidden;
   margin-left: 20px;
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .ratingArea:not(:checked) > input {
@@ -98,11 +100,11 @@
 .inputPages {
   font-size: 22px;
   font-weight: 200;
-  width: 200px;
+  width: 100px;
   height: 100%;
   border-radius: 20px;
   border: var(--border-size) solid #baa1ff;
-  padding-left: 15px;
+  /* padding-left: 15px; */
   text-align: center;
   -moz-appearance: textfield;
   /* -webkit-appearance: none; */

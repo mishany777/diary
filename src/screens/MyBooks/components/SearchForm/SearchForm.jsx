@@ -13,12 +13,18 @@ export default function SearchForm(props) {
       <form className={styles.searchBlock}>
         <input
           type="text"
+          list="books"
           name="search"
           value={search}
           onChange={(e) => {setSearch(e.target.value)}}
           className={styles.inputForm}
           placeholder="Поиск по моим книгам"
         ></input>
+        <datalist id="books">
+          {props.books.map((book) => {
+            return <option value={book.title} />;
+          })}
+        </datalist>
 
         <button className={styles.searchButton}>
           <img src={searchIcon} alt="Поиск"></img>

@@ -1,11 +1,10 @@
 import styles from "../Collections/Collections.module.css";
 import CollectionItem from "../CollectionItem/CollectionItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Collections(props) {
 
   const schedule = props.statistics.schedule;
-  console.log(schedule);
 
   const month_names = {
     '1': 'Январь',

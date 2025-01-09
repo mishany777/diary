@@ -1,0 +1,36 @@
+.modal {
+    display: flex; /* Используем flexbox для центрирования */
+    align-items: center; /* Вертикальное центрирование */
+    justify-content: center; /* Горизонтальное центрирование */
+    min-height: 100vh; /* Минимальная высота 100% от высоты экрана */
+  }
+  
+  .modal-dialog {
+    max-width: 500px; /* Максимальная ширина модального окна */
+    width: 100%; /* Ширина 100% для адаптивности */
+    margin: 0; /* Убираем отступы */
+  }
+  
+  .modal-content {
+    border-radius: 10px; /* Закругление углов */
+  }
+  
+  .modal-header {
+    background-color: #007bff; /* Цвет фона заголовка */
+    color: white; /* Цвет текста заголовка */
+  }
+  
+  .modal-body {
+    font-size: 1rem; /* Размер шрифта тела */
+    color: #212529; /* Цвет текста */
+  }
+  
+  .modal-footer {
+    display: flex; /* Используем flexbox для кнопок */
+    justify-content: flex-end; /* Выравнивание кнопок вправо */
+    border-top: none; /* Убираем верхнюю границу */
+  }
+  
+  .btn {
+    margin-left: 10px; /* Отступ между кнопками */
+  }

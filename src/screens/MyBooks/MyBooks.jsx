@@ -45,7 +45,7 @@ export default function MyBooks() {
       <Header></Header>
       <MainWrapper>
         <div className="test">
-          <SearchForm searchValue={searchValue}></SearchForm>
+          <SearchForm searchValue={searchValue} books={books}></SearchForm>
           {books.length > 0 ? <ProfileSection>
             {user ?
             <BooksList books={books}></BooksList> : <p>loading</p>}
