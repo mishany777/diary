@@ -126,7 +126,7 @@ export default function Search() {
                                 </div>
                             </Link>
                         </li>
-                        )) : <h1>Ничего не найдено</h1>}
+                        )) : ""}
                     </ul>
                 </>}
                     

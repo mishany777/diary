@@ -4,6 +4,7 @@
   border-radius: 20px;
   box-shadow: 8px 8px 8.8px 6px #00000040;
   display: flex;
+  min-height: 270px;
   align-items: center;
   padding: 30px 40px;
 }

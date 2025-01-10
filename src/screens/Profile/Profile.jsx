@@ -7,10 +7,14 @@ import Collections from "./components/Collections/Collections";
 import api from '../../api'
 import { useAuth } from "../../AuthContext";
 
+import { useNavigate } from "react-router-dom";
+
 import { useState, useEffect } from "react";
 import { use } from "react";
 
 export default function Profile() {
+
+  const navigate = useNavigate();
 
   const { user } = useAuth();
   const [statistics, setStatistics] = useState({});

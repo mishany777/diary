@@ -22,7 +22,7 @@ export default function Collections(props) {
   }
 
   const [shown, setShown] = useState(0);
-  const shown_length = Math.round(window.innerWidth / 320);
+  const shown_length = Math.floor(window.innerWidth / 320);
 
   const shownLeft = () => {
     if (shown === 0) return;

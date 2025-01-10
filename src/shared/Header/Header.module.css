@@ -73,3 +73,7 @@
   width: 22px;
   cursor: pointer;
 }
+
+.disabled:hover {
+  background-color: #a49fb45f !important;
+}

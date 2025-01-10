@@ -38,8 +38,15 @@ export default function Header() {
             <ul className={styles.navList}>
               <li className={styles.navContainer}>
                 <a href="/">Главная</a>
-                <a href="/collections">Коллекции</a>
-                <a href="/mybooks">Мои книги</a>
+                {user.username ?
+                <>
+                  <a href="/collections">Коллекции</a>
+                  <a href="/mybooks">Мои книги</a>
+                </> : <>
+                  <a href="/login" className={styles.disabled}>Коллекции</a>
+                  <a href="/login" className={styles.disabled}>Мои книги</a>
+                </>}
+                
               </li>
               <li className={styles.miniProfile}>
                 { key ? (
