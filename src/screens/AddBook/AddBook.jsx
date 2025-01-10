@@ -91,6 +91,9 @@ export default function AddBook() {
         alert(err);
       })
     }
+    else {
+      navigate("/mybooks");
+    }
     
   }
 

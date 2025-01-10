@@ -26,7 +26,7 @@ export default function MainBlock(props) {
     }, [user])
 
     useEffect(() => {
-        if (!props.book.book_id) {
+        if (!props.book.book_id || (!user.username) || !(props.book.username === user.username))   {
             return;
         }
         api.get(`/books/${props.book.book_id}/collections`)

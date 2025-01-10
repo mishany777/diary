@@ -66,6 +66,7 @@ body {
     border: none;
     background-color: #BAA1FF;
     cursor: pointer;
+    color: black;
 }
 
 .submit:hover {

@@ -6,10 +6,14 @@ import CreateCollectionItem from "./components/CreateCollectionItem/CreateCollec
 
 import styles from '../Collection/Collection.module.css';
 
+import { useNavigate } from "react-router-dom";
+
 import api from '../../api'
 import { useAuth } from "../../AuthContext";
 
 export default function Collection() {
+
+  const navigate = useNavigate();
 
   const { user } = useAuth();
   const [collections, setCollections] = useState([]);
