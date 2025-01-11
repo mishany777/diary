@@ -19,3 +19,27 @@
     grid-template-columns: repeat(5, 1fr);
   }
 }
+
+@media (max-width: 1500px) {
+  .booksBlock {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1200px) {
+  .booksBlock {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .booksBlock {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .booksBlock {
+    grid-template-columns: 1fr; /* Одна колонка на маленьких экранах */
+  }
+}

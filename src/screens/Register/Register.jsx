@@ -29,7 +29,14 @@ export default function Register() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        console.log('submit');
+
+        const usernamePattern = /^[a-zA-Z0-9]+$/;
+        if (!usernamePattern.test(username)) {
+            alert("Имя пользователя должно содержать только английские буквы и цифры, без специальных символов.");
+            return; // Прерываем выполнение функции, если проверка не прошла
+        }
+
+        
         await api.post('/users/register/', regData)
         .then(response => {
             const data = response.data;
