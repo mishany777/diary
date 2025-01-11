@@ -32,7 +32,6 @@
   display: flex;
   flex-direction: column;
   margin-right: auto;
-
   gap: 10px;
   height: 100%;
 }
@@ -41,6 +40,7 @@
   font-weight: 200;
   font-size: 36px;
 }
+
 .quoteBlock {
   display: flex;
   justify-content: space-between;
@@ -49,11 +49,13 @@
   padding-left: 5px;
   gap: 10px;
 }
+
 .quoteBlock p {
   font-weight: 200;
   font-size: 16px;
   width: 300px;
 }
+
 .quoteBlock img {
   width: 29px;
   height: 29px;
@@ -76,18 +78,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-}
-
-.statisticElem {
   font-size: 32px;
   font-weight: 200;
 }
+
 .statisticElem span {
   font-size: 48px;
-}
-
-.statisticNumb {
-  font-size: 32px;
 }
 
 .editButton {
@@ -97,14 +93,11 @@
   padding: 5px 10px;
   border-radius: 10px;
   font-weight: 300;
-  /* margin-top: 10px; */
   border: none;
   cursor: pointer;
 }
 
 .editFieldName {
-  /* padding: 5px 10px;
-  border-radius: 5px; */
   font-size: 18px;
   padding: 2px;
 }
@@ -116,4 +109,85 @@
   resize: vertical;
   max-height: 140px;
   min-height: 40px;
+}
+
+/* Адаптивные стили */
+@media (max-width: 1200px) {
+  .profileDiv {
+    grid-template-columns: 1fr; /* Одна колонка на меньших экранах */
+  }
+
+  .userInfo {
+    grid-template-columns: 1fr; /* Одна колонка для информации о пользователе */
+  }
+
+  .profileBlock img {
+    height: 200px; /* Уменьшаем размер изображения профиля */
+    width: 200px;
+  }
+
+  .profileBlock p {
+    font-size: 30px; /* Уменьшаем размер шрифта имени */
+  }
+
+  .statusBlock p {
+    font-size: 28px; /* Уменьшаем размер шрифта статуса */
+  }
+
+  .quoteBlock p {
+    width: auto; /* Убираем фиксированную ширину для описания */
+  }
+
+  .statisticElem {
+    font-size: 28px; /* Уменьшаем размер шрифта статистики */
+  }
+
+  .statisticElem span {
+    font-size: 40px; /* Уменьшаем размер шрифта для чисел статистики */
+  }
+}
+
+@media (max-width: 768px) {
+  .editFieldName {
+    font-size: 16px; /* Уменьшаем размер шрифта для полей ввода */
+  }
+
+  .editFieldBio {
+    font-size: 12px; /* Уменьшаем размер шрифта для текстовой области */
+  }
+
+  .editButton {
+    font-size: 14px; /* Уменьшаем размер шрифта для кнопки */
+  }
+}
+
+@media (max-width: 480px) {
+  .profileBlock img {
+    height: 150px; /* Уменьшаем размер изображения профиля для мобильных устройств */
+    width: 150px;
+  }
+
+  .profileBlock p {
+    font-size: 24px; /* Уменьшаем размер шрифта имени для мобильных устройств */
+  }
+
+  .statusBlock p {
+    font-size: 24px; /* Уменьшаем размер шрифта статуса для мобильных устройств */
+  }
+
+  .quoteBlock p {
+    font-size: 14px; /* Уменьшаем размер шрифта для описания */
+  }
+
+  .statisticElem {
+    font-size: 24px; /* Уменьшаем размер шрифта статистики для мобильных устройств */
+  }
+
+  .statisticElem span {
+    font-size: 32px; /* Уменьшаем размер шрифта для чисел статистики */
+  }
+
+  .editButton {
+    font-size: 12px; /* Уменьшаем размер шрифта для кнопки на мобильных устройствах */
+  }
 }

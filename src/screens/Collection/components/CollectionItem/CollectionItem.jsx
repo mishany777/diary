@@ -67,13 +67,11 @@ export default function CollectionItem(props) {
                 </select>
             </div>
             </div>
-            <div>
-                <button
-                className={styles.delete}
-                onClick={() => { deleteCollection() }}>
-                <p>Удалить</p>
-                </button>
-            </div>
+            <button
+            className={styles.delete}
+            onClick={() => { deleteCollection() }}>
+            <p>Удалить</p>
+            </button>
         </div>
     );
 }

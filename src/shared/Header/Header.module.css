@@ -57,6 +57,7 @@
   display: flex;
   align-items: center;
   gap: 15px;
+  margin-top: 10px; /* Увеличиваем отступ сверху для мини-профиля */
 }
 
 .miniProfile a {
@@ -76,4 +77,56 @@
 
 .disabled:hover {
   background-color: #a49fb45f !important;
+}
+
+/* Медиа-запросы для адаптивности */
+@media screen and (max-width: 900px) {
+  .header {
+    height: auto; /* Позволяем высоте адаптироваться */
+    flex-direction: column; /* Вертикальное расположение */
+    align-items: center; /* Центрируем содержимое */
+  }
+
+  .navWrapper {
+    flex-direction: column; /* Вертикальное расположение навигации */
+    align-items: center; /* Центрируем содержимое */
+    width: 100%;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  .navList {
+    flex-direction: column; /* Вертикальное расположение элементов списка */
+    align-items: center; /* Центрируем содержимое */
+    gap: 0px; /* Уменьшаем отступ между элементами */
+    width: 100%; /* Задаем ширину списка на 100% */
+    border-radius: 10px; /* Закругление углов списка */
+    padding: 10px; /* Добавляем внутренние отступы для списка */
+}
+
+  .navContainer {
+    flex-direction: column; /* Вертикальное расположение навигационных ссылок */
+    gap: 10px; /* Уменьшаем отступ между ссылками */
+    border-radius: 0px; /* Закругление углов контейнера навигации */
+    border: none;
+    width: 100%; /* Задаем ширину контейнера на 100% */
+  }
+
+  .navContainer a {
+    text-align: center; /* Выравнивание текста внутри ссылок */
+    width: 100%; /* Задаем ширину ссылок на 100% */
+    /* background-color: aquamarine; */
+    border: 1px solid #202020;
+    border-radius: 50px;
+  }
+
+  .logo img {
+    margin: 10px 0; /* Увеличиваем отступ сверху и снизу */
+  }
+
+  .miniProfile {
+    margin-top: 20px; /* Увеличиваем отступ сверху для мини-профиля */
+  }
 }

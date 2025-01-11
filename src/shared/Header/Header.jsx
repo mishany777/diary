@@ -37,14 +37,14 @@ export default function Header() {
           <nav>
             <ul className={styles.navList}>
               <li className={styles.navContainer}>
-                <a href="/">Главная</a>
+                <a className={styles.menuButton} href="/">Главная</a>
                 {user.username ?
                 <>
-                  <a href="/collections">Коллекции</a>
-                  <a href="/mybooks">Мои книги</a>
+                  <a className={styles.menuButton} href="/collections">Коллекции</a>
+                  <a className={styles.menuButton} href="/mybooks">Мои книги</a>
                 </> : <>
-                  <a href="/login" className={styles.disabled}>Коллекции</a>
-                  <a href="/login" className={styles.disabled}>Мои книги</a>
+                  <a href="/login" className={styles.disabled + " " + styles.menuButton}>Коллекции</a>
+                  <a href="/login" className={styles.disabled + " " + styles.menuButton}>Мои книги</a>
                 </>}
                 
               </li>

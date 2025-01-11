@@ -47,4 +47,19 @@
   cursor: pointer;
 }
 
+@media (max-width: 520px) {
+  .collectionButton {
+    width: 100%;
+  }
+  .collectionButton p {
+    font-size: 20px;
+    width: 100%;
+    text-align: center;
+  }
 
+  .collectionButtonBlock {
+    margin-left: 0;
+    width: 100%;
+    padding: 0;
+  }
+}

@@ -29,7 +29,7 @@ export default function CoverBlock(props) {
             <img src={book_photo} alt="Книга" className={styles.img_photo}></img>
           </div>
 
-          {props.book.username === user.username && !confirmation ? 
+          {user.username && props.book.username === user.username && !confirmation ? 
             <div className={styles.buttons}>
               <button className={styles.button + " " + styles.delete} onClick={() => {setConfirmation(true)}}>Удалить</button>           
             </div> : ""}
