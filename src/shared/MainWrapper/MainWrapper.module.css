@@ -10,7 +10,7 @@
 
 @media screen and (max-width: 900px) {
   .div {
-    flex-direction: column;
-    width: 91.6667%;
+    flex-direction: column; /* Переключаем на вертикальное расположение на меньших экранах */
+    width: 91.6667%; /* Увеличиваем ширину для мобильных устройств */
   }
 }

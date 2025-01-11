@@ -71,7 +71,7 @@ export default function MainBlock(props) {
                     <h1 className={styles.title}>{props.book.title}</h1>
                     <h1 className={styles.author}>{props.book.author}</h1>
                 </div>
-                {props.book.username === user.username ?
+                {user.username && props.book.username === user.username ?
                 <div className={styles.dropdown}>
                     <button className={styles.dropdownInput}>Добавить в коллекции</button>
                     <ul className={styles.dropdownList}>

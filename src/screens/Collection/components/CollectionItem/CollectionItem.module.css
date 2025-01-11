@@ -106,3 +106,22 @@
 .collectionTitle {
     font-size: 20px;
 }
+
+
+@media (max-width: 520px) {
+    .collectionItem {
+      flex-direction: column;
+      align-items: start;
+      margin-left: 0;
+      /* padding-left: 0; */
+    }
+
+    .delete {
+        width: min-content;
+    }
+
+    .delete p {
+        padding: 0;
+    }
+}
+  
